@@ -537,7 +537,19 @@ def test_reduced_motion_map_keeps_labels_visible_and_mobile_content_reachable(tm
             page.wait_for_selector('[data-texture-ready="true"]')
             for width in (1440, 390):
                 page.set_viewport_size({"width": width, "height": 844})
-                page.wait_for_timeout(50)
+                # Resizing can return before viewport units and ResizeObserver
+                # update the atlas. Wait for that state, not a wall-clock delay.
+                page.wait_for_function(
+                    """() => {
+                      const atlas = document.querySelector('#recovery-room-atlas');
+                      const frame = document.querySelector('.atlas-canvas-container');
+                      const canvas = frame.querySelector('canvas');
+                      return atlas.clientWidth === innerWidth &&
+                        canvas.clientWidth === frame.clientWidth &&
+                        document.documentElement.scrollWidth <= innerWidth;
+                    }""",
+                    timeout=5000,
+                )
                 assert page.locator(".region-pin:visible").count() > 0
                 assert page.locator(".atlas-canvas-container").evaluate(
                     """canvas => {
