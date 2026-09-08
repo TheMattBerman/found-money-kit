@@ -1,0 +1,49 @@
+{
+  "case": "three_records_two_components_conflicting_email",
+  "expect_merge": false,
+  "match_rule": null,
+  "nodes": [
+    {
+      "node_id": "hubspot:contact:three_email_left_a",
+      "source_system": "hubspot",
+      "object_type": "contact",
+      "source_id": "three_email_left_a",
+      "observed_at": "2026-07-01T12:00:00.000Z",
+      "payload_hash": "1111111111111111111111111111111111111111111111111111111111111111",
+      "email": "three.components@example.invalid",
+      "phone": null,
+      "external_ids": {
+        "found_money.synthetic_customer": "cust_three_left"
+      },
+      "display_name": "Three Email Left A"
+    },
+    {
+      "node_id": "stripe:customer:three_email_left_b",
+      "source_system": "stripe",
+      "object_type": "customer",
+      "source_id": "three_email_left_b",
+      "observed_at": "2026-07-01T12:01:00.000Z",
+      "payload_hash": "2222222222222222222222222222222222222222222222222222222222222222",
+      "email": "three.components@example.invalid",
+      "phone": null,
+      "external_ids": {
+        "found_money.synthetic_customer": "cust_three_left"
+      },
+      "display_name": "Three Email Left B"
+    },
+    {
+      "node_id": "hubspot:contact:three_email_right",
+      "source_system": "hubspot",
+      "object_type": "contact",
+      "source_id": "three_email_right",
+      "observed_at": "2026-07-01T12:02:00.000Z",
+      "payload_hash": "3333333333333333333333333333333333333333333333333333333333333333",
+      "email": "three.components@example.invalid",
+      "phone": null,
+      "external_ids": {
+        "found_money.synthetic_customer": "cust_three_right"
+      },
+      "display_name": "Three Email Right"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": "found-money-build-source.v1",
+  "mode": "fixture",
+  "fixture": "synthetic-service-v1",
+  "credentials": {
+    "credential_mode": "none",
+    "runtime_mode": "test",
+    "scopes": []
+  }
+}

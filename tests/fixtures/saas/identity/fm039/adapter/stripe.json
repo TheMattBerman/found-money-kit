@@ -1,0 +1,21 @@
+{
+  "schema": "stripe-snapshot.v1",
+  "source": "stripe",
+  "customers": [
+    {
+      "id": "st_adapter_001",
+      "display_name": "Adapter Customer",
+      "created": "2026-07-29T18:00:00Z",
+      "email": null,
+      "phone": null
+    }
+  ],
+  "invoices": [
+    {
+      "id": "in_adapter_001",
+      "customer_id": "st_adapter_001",
+      "status": "open",
+      "attempted_at": "2026-07-29T18:01:00Z"
+    }
+  ]
+}

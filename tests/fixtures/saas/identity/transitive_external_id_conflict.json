@@ -1,0 +1,47 @@
+{
+  "case": "transitive_external_id_conflict",
+  "expect_merge": false,
+  "match_rule": null,
+  "nodes": [
+    {
+      "node_id": "hubspot:contact:bridge_same_source_a",
+      "source_system": "hubspot",
+      "object_type": "contact",
+      "source_id": "bridge_same_source",
+      "observed_at": "2026-07-01T12:00:00.000Z",
+      "payload_hash": "6666666666666666666666666666666666666666666666666666666666666666",
+      "email": null,
+      "phone": null,
+      "external_ids": {
+        "found_money.synthetic_customer": "cust_component_a"
+      },
+      "display_name": "Bridge Same Source A"
+    },
+    {
+      "node_id": "hubspot:contact:bridge_same_source_b",
+      "source_system": "hubspot",
+      "object_type": "contact",
+      "source_id": "bridge_same_source",
+      "observed_at": "2026-07-01T12:01:00.000Z",
+      "payload_hash": "7777777777777777777777777777777777777777777777777777777777777777",
+      "email": "bridge@example.invalid",
+      "phone": "+15550102002",
+      "external_ids": {
+        "found_money.synthetic_customer": "cust_component_b"
+      },
+      "display_name": "Bridge Same Source B"
+    },
+    {
+      "node_id": "stripe:customer:bridge_email_right",
+      "source_system": "stripe",
+      "object_type": "customer",
+      "source_id": "bridge_email_right",
+      "observed_at": "2026-07-01T12:02:00.000Z",
+      "payload_hash": "8888888888888888888888888888888888888888888888888888888888888888",
+      "email": "bridge@example.invalid",
+      "phone": null,
+      "external_ids": {},
+      "display_name": "Bridge Email Right"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Top Play — deferred</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; min-width: 0; }
+    body {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 34px 4vw 80px;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      font-family: "Avenir Next", "Helvetica Neue", system-ui, -apple-system, sans-serif;
+    }
+    h1 { margin: 0 0 18px; font-size: clamp(28px, 8vw, 48px); overflow-wrap: anywhere; }
+    p { max-width: 65ch; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Top Play</h1>
+    <p>Strategy status: {{ strategy_stage }}. No generic fallback play was created.</p>
+    {% if named_data_gaps %}<p>Named data gaps: {{ named_data_gaps|join(", ") }}</p>{% endif %}
+    <p>Payment-grounded campaign copy remains withheld until the missing payment source is supplied.</p>
+  </main>
+</body>
+</html>

@@ -1,0 +1,90 @@
+{
+  "customers": [
+    [
+      {
+        "id": "cus_svc_ns_001",
+        "status": "active",
+        "synthetic_customer_key": "syn_svc_ns",
+        "external_ids": {
+          "appointments.customer_id": "apt_cust_ns_001"
+        }
+      },
+      {
+        "id": "cus_svc_tn_001",
+        "synthetic_customer_key": "syn_svc_tn",
+        "external_ids": {
+          "appointments.customer_id": "apt_cust_tn_001"
+        }
+      },
+      {
+        "id": "cus_svc_cm_001",
+        "status": "canceled",
+        "canceled_at": "2026-04-15T00:00:00Z",
+        "amount_minor": 2400,
+        "currency": "usd",
+        "synthetic_customer_key": "syn_svc_cm"
+      },
+      {
+        "id": "cus_svc_sp_001",
+        "status": "active",
+        "synthetic_customer_key": "syn_svc_sp",
+        "external_ids": {
+          "proposals.customer_id": "prp_cust_sp_001"
+        }
+      },
+      {
+        "id": "cus_svc_hv_001",
+        "status": "active",
+        "synthetic_customer_key": "syn_svc_hv"
+      }
+    ]
+  ],
+  "subscriptions": [
+    [
+      {
+        "id": "sub_svc_tn_001",
+        "customer": "cus_svc_tn_001",
+        "status": "expired",
+        "trial_end": "2026-05-01T00:00:00Z",
+        "converted": false,
+        "amount_minor": 1800,
+        "currency": "usd",
+        "synthetic_customer_key": "syn_svc_tn"
+      }
+    ]
+  ],
+  "invoices": [
+    [
+      {
+        "id": "in_svc_hv_001",
+        "customer": "cus_svc_hv_001",
+        "status": "paid",
+        "collection_outcome": "payment_succeeded",
+        "amount_due_cents": 22000,
+        "currency": "usd",
+        "paid_at": "2026-03-01T12:00:00Z",
+        "synthetic_customer_key": "syn_svc_hv"
+      }
+    ]
+  ],
+  "payment_intents": [
+    []
+  ],
+  "charges": [
+    []
+  ],
+  "refunds": [
+    []
+  ],
+  "products": [
+    []
+  ],
+  "prices": [
+    []
+  ],
+  "invoice_lines": {
+    "in_svc_hv_001": [
+      []
+    ]
+  }
+}

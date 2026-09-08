@@ -1,0 +1,17 @@
+{
+  "schema_version": "found-money-source-manifest.v1",
+  "sources": [
+    {
+      "schema_version": "stripe.2026-02-25.clover.v1",
+      "source_id": "stripe",
+      "source_type": "stripe"
+    },
+    {
+      "format": "csv",
+      "path": "inputs/orders.csv",
+      "schema_version": "orders.v1",
+      "source_id": "orders",
+      "source_type": "orders"
+    }
+  ]
+}

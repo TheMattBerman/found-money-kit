@@ -1,0 +1,8 @@
+{
+  "note": "AC-5 fixture marker for Recovery Room render negatives; executable coverage lives in tests/test_render_recovery_room.py.",
+  "cases": [
+    "empty_map_index_zero_totals",
+    "empty_plays_top_play_raises",
+    "missing_selected_play_raises"
+  ]
+}

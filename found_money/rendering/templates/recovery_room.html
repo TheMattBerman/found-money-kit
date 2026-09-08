@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Recovery Room — {{ run_id }}</title>
+  <link rel="stylesheet" href="assets/recovery-room.css">
+  <script src="assets/recovery-room.js" defer></script>
+</head>
+<body data-proof-no-bottom-text-clip{% if piles|length > 1 %} data-compact-piles="true"{% endif %}>
+  <a class="skip-link" href="#room-find">Skip to the first room</a>
+  <header class="site-header"><div class="brand-lockup"><span class="brand-mark" aria-hidden="true">f.</span><div><span class="brand-name">FOUND MONEY</span><h1 id="recovery-room-title" data-proof-primary>Recovery Room</h1></div></div><p>Run {{ run_id }}</p></header>
+  <nav aria-label="Recovery Room">
+    <a href="#room-find">The Find</a>
+    <a href="#room-evidence">The Evidence</a>
+    <a href="#room-play">The Play</a>
+    <a href="#room-launch">The Launch</a>
+  </nav>
+  <main>
+    <section id="room-find" data-room="find" aria-labelledby="heading-find">
+      <h2 id="heading-find">The Find</h2>
+      <p class="find-promise">{{ find_promise }}</p>
+      <p class="find-headline" data-find-headline>{{ find_headline }}</p>
+      {% if find_other_currencies %}<p class="find-additional">Also identified: {{ find_other_currencies|join(" · ") }}. Each currency stays separate.</p>{% endif %}
+      <p class="find-counts">{{ find_pile_count }} money piles / {{ customer_count if customer_count is not none else "not supplied" }} recoverable customers / {{ find_play_count }} campaigns I would launch first</p>
+      <p class="strategy-status">Strategy status: {{ strategy_stage }}</p>
+      {% if synthetic_demo %}<p class="demo-label">Example business · Illustrative data and estimates</p>{% endif %}
+      {% if atlas_fragment %}
+      {{ atlas_fragment | safe }}
+      {% endif %}
+      <h3 class="section-eyebrow">Money piles</h3>
+      {% if piles %}
+      <ol class="find-piles find-spotlight">
+        <li id="pile-{{ piles[0].pile_id }}-{{ piles[0].currency }}" class="find-pile find-pile-spotlight" data-rank="{{ piles[0].rank }}" data-pile-id="{{ piles[0].pile_id }}"{% if piles[0].selected_value_minor %} data-selected-value-minor="{{ piles[0].selected_value_minor }}"{% endif %}>
+          <span id="pile-{{ piles[0].rank }}" class="anchor-target" aria-hidden="true"></span>
+          <span class="spotlight-label">01 / START HERE</span><strong class="find-pile-name">{{ piles[0].display_name }}</strong>
+          <span class="find-pile-amount">{{ piles[0].amount_label }}</span>
+          <span class="find-pile-basis">{{ piles[0].basis_label }}</span><p class="spotlight-story">{{ piles[0].why_recoverable }}</p>
+          {% if piles[0].share_label %}<span class="find-pile-share">{{ piles[0].share_label }}</span>{% endif %}
+          <span class="find-pile-bar" style="{{ piles[0].bar_style }}" aria-hidden="true"></span>
+          {% if piles[0].play_id %}<a href="#{{ piles[0].play_id }}">Open linked play</a>{% else %}{% if piles|length == 1 %}strategy deferred{% else %}deferred{% endif %}{% endif %}
+        </li>
+      </ol>
+      {% if piles|length > 1 %}
+      <div class="find-queue" tabindex="0" aria-label="Other money piles">
+        <ol class="find-piles find-queue-track">
+          {% for pile in piles[1:] %}
+          <li id="pile-{{ pile.pile_id }}-{{ pile.currency }}" class="find-pile find-pile-queued" data-rank="{{ pile.rank }}" data-pile-id="{{ pile.pile_id }}"{% if pile.selected_value_minor %} data-selected-value-minor="{{ pile.selected_value_minor }}"{% endif %}>
+            <span id="pile-{{ pile.rank }}" class="anchor-target" aria-hidden="true"></span>
+            <span class="queue-label">{{ "%02d"|format(pile.rank) }} / IN THE QUEUE</span><strong class="find-pile-name">{{ pile.display_name }}</strong>
+            <span class="find-pile-amount">{{ pile.amount_label }}</span>
+            <span class="find-pile-basis">{{ pile.basis_label }}</span>
+            {% if pile.share_label %}<span class="find-pile-share">{{ pile.share_label }}</span>{% endif %}
+            <span class="find-pile-bar" style="{{ pile.bar_style }}" aria-hidden="true"></span>
+            {% if pile.play_id %}<a href="#{{ pile.play_id }}">Open linked play</a>{% else %}deferred{% endif %}
+          </li>
+          {% endfor %}
+        </ol>
+      </div>
+      {% endif %}
+      {% else %}<p>No ranked piles; strategy remains deferred.</p>{% endif %}
+      {% if walkthrough %}
+      <h3>Owner walkthrough</h3>
+      <ol class="find-walkthrough">
+        <li><p class="find-walkthrough-label">Top pile</p><p class="find-walkthrough-body">{{ walkthrough.why_recoverable }}</p></li>
+        <li><p class="find-walkthrough-label">Play guardrail</p><p class="find-walkthrough-body">{{ walkthrough.constraints }}</p></li>
+        <li><p class="find-walkthrough-label">Operator next step</p><p class="find-walkthrough-body">{{ walkthrough.next_step }}</p></li>
+      </ol>
+      {% endif %}
+      <h3>Value basis</h3>
+      <ul>{% for row in basis_counts %}<li>{{ row.currency }}: observed {{ row.observed_event_count }}, modeled {{ row.modeled_event_count }}, unquantified {{ row.unquantified_event_count }}</li>{% endfor %}</ul>
+      <p><a href="money-map.json">Open the canonical Money Map artifact</a></p>
+      <a data-recommended-action href="#room-evidence">Review the evidence</a>
+    </section>
+
+    <section id="room-evidence" data-room="evidence" aria-labelledby="heading-evidence">
+      <h2 id="heading-evidence">The Evidence</h2>
+      {% if piles %}<ol class="evidence-piles">{% for pile in piles %}<li class="evidence-pile" data-pile-id="{{ pile.pile_id }}"><h3>{{ pile.display_name }}</h3><p class="evidence-why">{{ pile.why_recoverable }}</p><p class="evidence-basis">{{ pile.basis_label }}</p><p class="evidence-amount">{{ pile.amount_label }}</p><p class="evidence-confidence">{{ pile.confidence_class }}</p><p class="evidence-readiness">{{ pile.readiness }}</p>{% if pile.play_id %}<p class="evidence-play"><a href="#{{ pile.play_id }}">Open linked play</a></p>{% endif %}</li>{% endfor %}</ol>{% else %}<p>No ranked piles; aggregate evidence remains run-level only.</p>{% endif %}
+      <div class="evidence-metrics"><p>Customer count: <strong>{{ customer_count if customer_count is not none else "not supplied" }}</strong></p><p>Source count: <strong>{{ source_count if source_count is not none else "not supplied" }}</strong></p><p>Overlap exclusion count: <strong>{{ overlap_exclusion_count }}</strong></p><p>Data gap count: <strong>{{ data_gap_count }}</strong></p></div>
+      <p>Source lineage: aggregate-only evidence retained in private contracts.</p>
+      {% if named_data_gaps %}<p>Named data gaps: {{ named_data_gaps|join(", ") }}</p>{% endif %}
+      {% if event_exclusions_by_reason %}<p>Event exclusions: {% for reason, count in event_exclusions_by_reason.items()|sort %}{{ reason }} {{ count }}{% if not loop.last %}; {% endif %}{% endfor %}</p>{% endif %}
+      <p><a href="provenance/run-manifest.json">Open the aggregate run provenance</a></p>
+      <a data-recommended-action href="#room-play">Review the Recovery Plays</a>
+    </section>
+
+    <section id="room-play" data-room="play" aria-labelledby="heading-play">
+      <h2 id="heading-play">The Play</h2>
+      {% if plays %}
+      {% if plays|length > 1 %}
+      <div class="play-angles" role="group" aria-label="Play angles">
+        {% for play in plays %}
+        <a href="#{{ play.play_id }}" data-play-angle="{{ play.play_id }}">{{ play.title }}</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% for play in plays %}
+      <article id="{{ play.play_id }}" class="play-campaign" data-play-id="{{ play.play_id }}">
+        <header class="play-pitch">
+          <h3>{{ play.title }}</h3>
+          {% if play.complete %}
+          <p class="play-pile">{{ play.pile_display_name }}</p>
+          <p class="play-stakes">{{ play.amount_label }}</p>
+          <p class="play-diagnosis">{{ play.diagnosis }}</p>
+          {% if play.offer.recommendation %}<p class="play-offer-recommendation">{{ play.offer.recommendation }}</p>{% endif %}
+          <ol class="play-offer-ladder">
+          {% for rung in play.offer.rungs %}
+            <li class="play-offer-rung" data-offer-rung-id="{{ rung.id }}" data-offer-rung-role="{{ rung.role }}"{% if rung.is_recommended %} data-recommended-rung="true"{% endif %}{% if rung.is_save_path %} data-save-path-rung="true"{% endif %}>
+              {% if rung.is_recommended %}<strong>Recommended rung:</strong> {% elif rung.is_save_path %}<strong>Save path:</strong> {% elif rung.role == "high_anchor" %}<strong>Anchor:</strong> {% endif %}
+              <span class="play-offer-rung-mechanism">{{ rung.mechanism }}</span>
+              <span class="play-offer-rung-terms">{{ rung.terms }}</span>
+            </li>
+          {% endfor %}
+          </ol>
+          <p class="play-offer">{{ play.offer.mechanism }}</p>
+          <p class="play-cta">{{ play.primary_cta }}</p>
+          {% endif %}
+        </header>
+        <p class="play-machine-id">{{ play.play_id }}</p>
+        <p>{{ play.rationale }}</p>
+        {% if play.complete %}
+        <dl class="campaign-facts">
+          <dt>Campaign strategy</dt><dd>{{ play.campaign_strategy }}</dd>
+          <dt>Value basis</dt><dd>{{ play.value_basis }}</dd>
+          <dt>Audience</dt><dd>{{ play.audience }}</dd>
+          <dt>Recoverability</dt><dd>{{ play.recoverability }}</dd>
+          <dt>Offer rationale</dt><dd>{{ play.offer.rationale }}</dd>
+          <dt>Offer constraints</dt><dd>{% for item in play.offer.constraints %}{{ item }}{% if not loop.last %}; {% endif %}{% endfor %}</dd>
+          <dt>Lifecycle sequence</dt><dd>{{ play.lifecycle_sequence }}</dd>
+          <dt>Task talk track</dt><dd>{{ play.task_talk_track }}</dd>
+          <dt>Urgency</dt><dd>{{ play.urgency }}</dd>
+          <dt>Stop conditions</dt><dd>{{ play.stop_conditions }}</dd>
+          <dt>Success event</dt><dd>{{ play.tracking.success_event }}</dd>
+          <dt>Tracked signals</dt><dd>{% for item in play.tracking.tracked_signals %}{{ item }}{% if not loop.last %}; {% endif %}{% endfor %}</dd>
+          <dt>Channel emphasis</dt><dd>{{ play.channel_emphasis }}</dd>
+          <dt>Creative big idea</dt><dd>{{ play.creative_big_idea }}</dd>
+        </dl>
+        <h4 class="section-eyebrow">Email sequence</h4>
+        <ol class="play-emails">{% for item in play.email_sequence %}<li class="play-email"><span class="email-touch">EMAIL {{ "%02d"|format(loop.index) }}</span><p class="play-email-stage">{{ item.lifecycle_stage }}</p><p class="play-email-subject">{{ item.subject }}</p><p class="play-email-body">{{ item.body }}</p><p class="play-email-cta">{{ item.cta }}</p><button type="button" class="copy-email" disabled aria-label="Copy email {{ loop.index }}">Copy email</button></li>{% endfor %}</ol>
+        <h4>SMS plan</h4>{% if play.sms.available %}<ul class="play-sms">{% for item in play.sms.messages %}<li class="play-sms-item">{{ item }}</li>{% endfor %}</ul>{% else %}<p>{{ play.sms.unavailable_reason }}</p>{% endif %}
+        <h4>Objections</h4>
+        <dl class="play-objections">{% for item in play.objections %}<dt>{{ item.objection }}</dt><dd>{{ item.response }}</dd>{% endfor %}</dl>
+        <h4>Calendar</h4>
+        <ol class="play-calendar">{% for item in play.calendar %}<li><span class="play-calendar-day">Day {{ item.day }}</span><span class="play-calendar-action">{{ item.action }}</span><span class="play-calendar-stop">{{ item.stop_condition }}</span></li>{% endfor %}</ol>
+        <h4>Concept Cards</h4>
+        <ul class="play-cards">{% for card in play.cards %}<li id="{{ card.card_id }}" class="play-card"><strong class="play-card-name">{{ card.card_name }}</strong><dl><dt>Hook</dt><dd>{{ card.hook }}</dd><dt>Big idea</dt><dd>{{ card.big_idea }}</dd><dt>Opening visual</dt><dd>{{ card.opening_visual }}</dd><dt>Proof device</dt><dd>{{ card.proof_device }}</dd><dt>Format</dt><dd>{{ card.format_style }}</dd><dt>CTA</dt><dd>{{ card.cta }}</dd><dt>Audience tension</dt><dd>{{ card.audience_tension }}</dd><dt>Pile fit</dt><dd>{{ card.pile_fit }}</dd><dt>Production requirements</dt><dd>{% for item in card.production_requirements %}{{ item }}{% if not loop.last %}; {% endif %}{% endfor %}</dd></dl></li>{% endfor %}</ul>
+        {% else %}<p>Thin fixture play; complete campaign assets remain unavailable.</p>{% endif %}
+      </article>
+      {% endfor %}
+      {% else %}<p>Strategy status: deferred. No generic fallback play was created.</p>{% endif %}
+      <p><a href="recovery-plays.json">Open the canonical Recovery Plays artifact</a></p>
+      <a data-recommended-action href="#room-launch">Review launch readiness</a>
+    </section>
+
+    <section id="room-launch" data-room="launch" aria-labelledby="heading-launch">
+      <h2 id="heading-launch">The Launch</h2>
+      <p>Launch status: {{ launch_status }}</p>
+      {% if withheld_assets %}<p>Withheld assets:</p><ul class="launch-withheld">{% for asset in withheld_assets %}<li>{{ asset }}</li>{% endfor %}</ul>{% else %}<p>No launch assets are declared available.</p>{% endif %}
+      <p class="launch-no-send">{{ no_send_sentence }}</p>
+      <h3>Calendar</h3>
+      {% if launch_calendar %}<ol class="launch-calendar">{% for item in launch_calendar %}<li data-play-id="{{ item.play_id }}"><span class="launch-calendar-play">{{ item.label }}</span><span class="launch-calendar-day">Day {{ item.day }}</span><span class="launch-calendar-action">{{ item.action }}</span><span class="launch-calendar-stop">{{ item.stop_condition }}</span></li>{% endfor %}</ol>{% else %}<p>No calendar rows are available for this run.</p>{% endif %}
+      <h3>Checklist</h3>
+      <ul class="launch-checklist">{% for item in launch_checklist %}<li data-checklist-item="{{ item.key }}" data-status="{{ item.status }}">{{ item.display }}</li>{% endfor %}</ul>
+      <div class="handoff-panel" data-handoff-panel="true">
+        <h3>Honest handoffs</h3>
+        <p>These exports are approval-only. Configured intake links never embed customer data and are not automatic integrations.</p>
+        <div data-handoff-kind="stealads" data-configured="{{ 'true' if handoff.stealads.configured else 'false' }}">
+          <h4>StealAds</h4>
+          {% if handoff.stealads.configured and handoff.stealads.intake_url %}
+          <p><a id="stealads-intake" data-handoff-intake="true" data-integration="manual" href="{{ handoff.stealads.intake_url }}">{{ handoff.stealads.label }}</a></p>
+          {% else %}
+          <p id="stealads-label">{{ handoff.stealads.label }}</p>
+          {% endif %}
+          {% if handoff.stealads.export_href %}
+          <p><a id="stealads-export" data-handoff-export="creative-handoff" href="{{ handoff.stealads.export_href }}" download>Download creative handoff</a></p>
+          {% endif %}
+          <p id="stealads-instructions">{{ handoff.stealads.instructions }}</p>
+        </div>
+        <div data-handoff-kind="matt_emerald" data-configured="{{ 'true' if handoff.matt_emerald.configured else 'false' }}">
+          <h4>Matt/Emerald</h4>
+          {% if handoff.matt_emerald.configured and handoff.matt_emerald.intake_url %}
+          <p><a id="matt-emerald-intake" data-handoff-intake="true" data-integration="manual" href="{{ handoff.matt_emerald.intake_url }}">{{ handoff.matt_emerald.label }}</a></p>
+          {% if handoff.matt_emerald.export_href %}
+          <p><a id="matt-emerald-export" data-handoff-export="production-brief" href="{{ handoff.matt_emerald.export_href }}" download>Download production brief</a></p>
+          {% endif %}
+          {% else %}
+          <p><a id="matt-emerald-export-label" data-handoff-export="production-brief" {% if handoff.matt_emerald.export_href %}href="{{ handoff.matt_emerald.export_href }}" download{% endif %}>{{ handoff.matt_emerald.label }}</a></p>
+          {% endif %}
+          <p id="matt-emerald-instructions">{{ handoff.matt_emerald.instructions }}</p>
+        </div>
+      </div>
+      <p><a href="launch-pack/manifest.json">Open the launch status artifact</a></p>
+      <a data-recommended-action href="#room-find">Return to the highest-ranked find</a>
+    </section>
+  </main>
+</body>
+</html>

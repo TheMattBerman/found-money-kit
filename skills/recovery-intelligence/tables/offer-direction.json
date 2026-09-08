@@ -1,0 +1,38 @@
+{
+  "source": "Found Money recovery operating rules",
+  "directions": {
+    "step_down": {
+      "applies_to_cohort": "prospect",
+      "meaning": "Reduce scope to meet a constraint. Never reduce price at unchanged scope.",
+      "mechanisms": [
+        "payment_plan",
+        "feature_tier",
+        "trial_with_catch"
+      ]
+    },
+    "step_up": {
+      "applies_to_cohort": "customer",
+      "meaning": "Hold price. Add value or a commitment structure.",
+      "mechanisms": [
+        "cookie",
+        "continuity_bonus",
+        "waived_fee_continuity",
+        "non_monetary_terms"
+      ]
+    },
+    "repair": {
+      "applies_to_warmth": "involuntary",
+      "meaning": "Assume a technical fault. Offer no incentive unless they say money is tight, then payment-plan flexibility only.",
+      "mechanisms": [
+        "payment_plan"
+      ]
+    }
+  },
+  "guardrails": {
+    "discount_requires_commitment_term": "A discount rung is valid only when bound to an upfront or multi-month commitment. An unbound percentage off a month-to-month price is a panic discount and must be rejected.",
+    "downsell_reduces_scope": "A downsell rung must carry a scope delta, not only a lower price.",
+    "unpriced_piles_concede_nothing": "If value_basis is modeled_opportunity or confidence_class is mixed, no rung may concede money. Zero-marginal-cost rungs only.",
+    "every_rung_carries_a_condition": "Milestone, results share, implementation step, or clawback."
+  },
+  "discount_margin_ceiling_percent": 100
+}

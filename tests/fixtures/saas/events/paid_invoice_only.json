@@ -1,0 +1,24 @@
+{
+  "schema": "stripe-snapshot.v1",
+  "source": "stripe",
+  "customers": [
+    {
+      "id": "cus_neg_paid_001",
+      "synthetic_customer_key": "cust_neg_paid_001",
+      "status": "active"
+    }
+  ],
+  "invoices": [
+    {
+      "id": "inv_neg_paid_001",
+      "customer_id": "cus_neg_paid_001",
+      "synthetic_customer_key": "cust_neg_paid_001",
+      "status": "paid",
+      "collection_outcome": "payment_succeeded",
+      "amount_due_cents": 1200,
+      "currency": "usd",
+      "paid_at": "2026-07-01T10:00:00Z",
+      "role": "paid_negative_control"
+    }
+  ]
+}

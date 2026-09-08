@@ -1,0 +1,51 @@
+{
+  "source": "Found Money recovery operating rules",
+  "by_pile": {
+    "failed_payment": {
+      "forbidden_substrings_case_insensitive": [
+        "sorry to see you go",
+        "sad to see you go",
+        "before you go",
+        "why did you cancel",
+        "why you cancelled",
+        "why you canceled",
+        "we'll miss you",
+        "cancel your account"
+      ],
+      "forbidden_patterns": {
+        "access_loss_ultimatum": "(lose|lost|losing) (access|your account)|within 24 hours|or your account will"
+      },
+      "reason": "An involuntary lapse is not a decision to leave. Farewell framing hands a frictionless exit to someone who never chose one, and an ultimatum triggers a defensive reaction."
+    },
+    "payment_rescue": {
+      "same_as": "failed_payment"
+    },
+    "canceled_customer": {
+      "forbidden_substrings_error_name": "payment_glitch_framing",
+      "forbidden_substrings_case_insensitive": [
+        "billing glitch",
+        "payment glitch",
+        "card didn't go through",
+        "card did not go through",
+        "card on file stopped working",
+        "card was declined",
+        "card declined",
+        "payment failed",
+        "update your card"
+      ],
+      "forbidden_patterns": {
+        "payment_glitch_framing": "(billing|payment) glitch|(card|payment) (didn't|did not|failed|declined)|card on file"
+      },
+      "reason": "A canceled customer chose to leave. Framing their departure as a billing glitch or failed payment is false."
+    },
+    "closed_lost_stale_deal": {
+      "no_email_play": true,
+      "forbidden_patterns": {
+        "no_email_play_permitted": ".*"
+      },
+      "reason": "Closed-lost deals get a review action only: no email play, no money claims."
+    }
+  },
+  "note": "Failed payment prohibits cancellation framing; canceled customer prohibits payment glitch framing; closed-lost prohibits email plays."
+}
+

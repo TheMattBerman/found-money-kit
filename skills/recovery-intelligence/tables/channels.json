@@ -1,0 +1,69 @@
+{
+  "source": "Found Money recovery operating rules",
+  "principle": "Channels are coordinated, not chosen. Isolate the segment, then run the channels that fit it at the same time. channel_emphasis is a set, not a winner.",
+  "channels": {
+    "email": {
+      "kit_produces": "copy",
+      "human_executes": "send"
+    },
+    "sms": {
+      "kit_produces": "copy",
+      "human_executes": "send"
+    },
+    "task": {
+      "kit_produces": "talk track",
+      "human_executes": "call"
+    },
+    "paid": {
+      "kit_produces": "concept only",
+      "human_executes": "build audience, produce creative, run"
+    }
+  },
+  "recommend_paid_when": [
+    "the segment is large enough to be worth a campaign rather than individual outreach",
+    "direct channels are blocked or degraded (bounced mail, opted out of SMS, do-not-call)",
+    "the pile is customer-side, so the audience already knows the brand",
+    "the owner already runs paid and has an ad account"
+  ],
+  "do_not_recommend_paid_when": [
+    "the pile is involuntary (failed_payment, payment_rescue). A billing fault is fixed by a direct message, not an impression.",
+    "the segment is unpriced or mixed-confidence, so spend cannot be justified",
+    "the segment is below a workable audience size"
+  ],
+  "known_unknowns": {
+    "audience_minimum_size": null,
+    "expected_match_rate": null,
+    "note": "The corpus explicitly does not hold platform minimums or match rates. Do not invent them. Owner-supplied or leave unquantified."
+  },
+  "suppression": {
+    "must_exclude": [
+      {
+        "rule": "no_fit_no_engagement",
+        "why": "Outside ICP and zero engagement."
+      },
+      {
+        "rule": "stagnant_non_icp",
+        "why": "Poor fit, belongs in passive nurture not an active audience."
+      },
+      {
+        "rule": "past_time_in_stage",
+        "why": "Sat past its stage threshold with no activity; close it out."
+      },
+      {
+        "rule": "role_changer",
+        "why": "Decision-maker confirmed gone. Rebuild the mapping, do not retarget."
+      }
+    ]
+  },
+  "claims": {
+    "paid_plays_may_not_claim_recovered_revenue": true,
+    "why": "Attribution theft. The ad platform is incentivised to serve people who would have converted anyway and take the credit.",
+    "tracking_must_name_an_incrementality_method": [
+      "geo_holdout",
+      "incremental_attribution_setting",
+      "blended_mer"
+    ],
+    "forbidden_evidence": "platform-reported ROAS on its own"
+  },
+  "boundary": "The kit never creates an audience. Capability scanning blocks create_audience, the transport allowlist blocks the audience endpoint, and the stale-state scanner rejects any claim that one was built. The kit recommends; the owner builds and runs it."
+}

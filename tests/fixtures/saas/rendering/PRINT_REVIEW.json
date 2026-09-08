@@ -1,0 +1,168 @@
+{
+  "contact_sheet_sha256": "fbf2446d64499b78a543b24221f4c0483585873cd8c0fd02b24bf5616852f3bf",
+  "decision": "pass",
+  "not_authorized": [
+    "publication",
+    "deployment",
+    "send",
+    "schedule",
+    "live-business run"
+  ],
+  "notes": "FM-045 changed the print cover to major-unit dollars and the Find promise. This packet remains the FM-029 human approval for the pre-FM-045 PDF at 2f7fc5bdfaa633f1066c9cfcfd0bb861c816981d. Fresh human print review is required before any new ratification. This worker did not ratify the FM-045 pages and does not mark global AC-27 complete.",
+  "page_reviews": [
+    {
+      "artifact": "print-report-page-01.png",
+      "findings": [],
+      "page": 1,
+      "sha256": "db617c79e7f4b0771fe4cb46b297f3204e4c354a6a961be22c049d1c98656906",
+      "status": "pass"
+    },
+    {
+      "artifact": "print-report-page-02.png",
+      "findings": [],
+      "page": 2,
+      "sha256": "e5dfc36a0a20c8628884008b6d0f8d65bbdf348eb152137ac7a78d17fc7fdf66",
+      "status": "pass"
+    },
+    {
+      "artifact": "print-report-page-03.png",
+      "findings": [],
+      "page": 3,
+      "sha256": "18987a380cc316832e428a5cc0b46c1aaba16d5a87720de5be5ec5f730535077",
+      "status": "pass"
+    },
+    {
+      "artifact": "print-report-page-04.png",
+      "findings": [],
+      "page": 4,
+      "sha256": "b910409febb0b302a75becd740a29fc688eef2cc930e0531ab3e0f42ee193c65",
+      "status": "pass"
+    },
+    {
+      "artifact": "print-report-page-05.png",
+      "findings": [],
+      "page": 5,
+      "sha256": "57acaa0c25c75e28b9784ba2f37e21c6867f6b35658930294c1d46bd2b518cc1",
+      "status": "pass"
+    },
+    {
+      "artifact": "print-report-page-06.png",
+      "findings": [],
+      "page": 6,
+      "sha256": "7909ee4e15e241502c18dc73d0f1e26848127e34da2b69f0156ccad6c7e40f62",
+      "status": "pass"
+    },
+    {
+      "artifact": "print-report-page-07.png",
+      "findings": [],
+      "page": 7,
+      "sha256": "60e0e6e46f5efc48eaec60e3870caff49ecbf1f3d6f9ae203eee584dee995d55",
+      "status": "pass"
+    },
+    {
+      "artifact": "print-report-page-08.png",
+      "findings": [],
+      "page": 8,
+      "sha256": "c2a54fb4697e400e24a43e647a8454a8ddde7aea6c8f6f4d80a990c03413aa3b",
+      "status": "pass"
+    },
+    {
+      "artifact": "print-report-page-09.png",
+      "findings": [],
+      "page": 9,
+      "sha256": "c02a37c2056b36455d8b5e1369406b450ebe350d00687516de4887ebb049d6a5",
+      "status": "pass"
+    },
+    {
+      "artifact": "print-report-page-10.png",
+      "findings": [],
+      "page": 10,
+      "sha256": "b4cb195d90d37e286c557a0989149d2f1821f8b6c5911ffa20edda1a735f0b9d",
+      "status": "pass"
+    },
+    {
+      "artifact": "print-report-page-11.png",
+      "findings": [],
+      "page": 11,
+      "sha256": "fb7886f6240fec5f8b6e64ce5986105cf0330e3c8b07ab7cbdf7b6cefd2fd067",
+      "status": "pass"
+    },
+    {
+      "artifact": "print-report-page-12.png",
+      "findings": [],
+      "page": 12,
+      "sha256": "cd808e788a153822d0958a588e5e1fe8962ec219c1459c448ed438f7fe23213f",
+      "status": "pass"
+    },
+    {
+      "artifact": "print-report-page-13.png",
+      "findings": [],
+      "page": 13,
+      "sha256": "de549d2ab699c55bcfdaa634c1bcf030eb540d389cd13d315267e3a21095d7a6",
+      "status": "pass"
+    },
+    {
+      "artifact": "print-report-page-14.png",
+      "findings": [],
+      "page": 14,
+      "sha256": "be67029f5bd664321e89cbff1da4152b8c936448ef380f70e764164f80c27de4",
+      "status": "pass"
+    },
+    {
+      "artifact": "print-report-page-15.png",
+      "findings": [],
+      "page": 15,
+      "sha256": "f888ba81ba702e780f4e1f7ca92fe8ca63ef3beee08ce91587ac8377bb215b8d",
+      "status": "pass"
+    },
+    {
+      "artifact": "print-report-page-16.png",
+      "findings": [],
+      "page": 16,
+      "sha256": "1137e1144c009e49b82a0d95f0f43318cea355aba4b698c823e03ca30d9bb38d",
+      "status": "pass"
+    },
+    {
+      "artifact": "print-report-page-17.png",
+      "findings": [],
+      "page": 17,
+      "sha256": "d37d62578fab413998f50dae74709af9b2c895129bfef5cf86431de410db6edb",
+      "status": "pass"
+    },
+    {
+      "artifact": "print-report-page-18.png",
+      "findings": [],
+      "page": 18,
+      "sha256": "738f4986b6c64d3dab66239080b806eee6153ccbeed3976c1024a27dbae2198c",
+      "status": "pass"
+    },
+    {
+      "artifact": "print-report-page-19.png",
+      "findings": [],
+      "page": 19,
+      "sha256": "e48408d5ed89a7c7aa8340adfa1cd59dd30463cabf67d3810e0f4dda16790141",
+      "status": "pass"
+    }
+  ],
+  "pdf_sha256": "4ae119e5105f15fffcf8238cbee4a397f0014d1701d08c1e7a6de63d8ad5ba62",
+  "platform": "macos",
+  "review_authority": "Matthew Berman explicitly authorized Codex to act as him and complete the kit",
+  "reviewed_at": "2026-08-10T22:40:00Z",
+  "reviewed_implementation_head": "2f7fc5bdfaa633f1066c9cfcfd0bb861c816981d",
+  "reviewer": "Matthew Berman via delegated Codex visual inspection",
+  "rubric": {
+    "clipping": "pass",
+    "concept_card_integrity": "pass",
+    "cross_artifact_identity": "pass",
+    "fonts": "pass",
+    "hierarchy": "pass",
+    "margins": "pass",
+    "orphan_headings": "pass",
+    "readability": "pass",
+    "table_sequence_integrity": "pass",
+    "url_integrity": "pass"
+  },
+  "run_id": "run_f7e27bfd5aeb154d",
+  "schema_version": "print-review.v1",
+  "status": "approved"
+}

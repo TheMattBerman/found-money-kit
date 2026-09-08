@@ -1,0 +1,49 @@
+{
+  "case": "strongly_joined_external_id_email",
+  "expect_merge": true,
+  "match_rule": "declared_external_id",
+  "nodes": [
+    {
+      "node_id": "hubspot:contact:strong_ext_a",
+      "source_system": "hubspot",
+      "object_type": "contact",
+      "source_id": "strong_ext_a",
+      "observed_at": "2026-07-01T12:00:00.000Z",
+      "payload_hash": "1111111111111111111111111111111111111111111111111111111111111111",
+      "email": "strongly.joined@example.invalid",
+      "phone": null,
+      "external_ids": {
+        "found_money.synthetic_customer": "cust_strongly_joined"
+      },
+      "display_name": "Strong External A"
+    },
+    {
+      "node_id": "stripe:customer:strong_ext_b",
+      "source_system": "stripe",
+      "object_type": "customer",
+      "source_id": "strong_ext_b",
+      "observed_at": "2026-07-01T12:01:00.000Z",
+      "payload_hash": "2222222222222222222222222222222222222222222222222222222222222222",
+      "email": "strongly.joined@example.invalid",
+      "phone": null,
+      "external_ids": {
+        "found_money.synthetic_customer": "cust_strongly_joined"
+      },
+      "display_name": "Strong External B"
+    },
+    {
+      "node_id": "hubspot:contact:strong_ext_c",
+      "source_system": "hubspot",
+      "object_type": "contact",
+      "source_id": "strong_ext_c",
+      "observed_at": "2026-07-01T12:02:00.000Z",
+      "payload_hash": "3333333333333333333333333333333333333333333333333333333333333333",
+      "email": "strongly.joined@example.invalid",
+      "phone": null,
+      "external_ids": {
+        "found_money.synthetic_customer": "cust_strongly_joined"
+      },
+      "display_name": "Strong External C"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "customers": [[
+    {"id": "cus_ecom_lapse_001", "status": "active", "external_ids": {"orders.customer_id": "ord_cust_lapse_001"}},
+    {"id": "cus_ecom_reorder_001", "status": "active", "external_ids": {"orders.customer_id": "ord_cust_reorder_001"}},
+    {"id": "cus_ecom_vip_001", "status": "active", "external_ids": {"orders.customer_id": "ord_cust_vip_001"}},
+    {"id": "cus_ecom_refund_001", "status": "active", "external_ids": {"orders.customer_id": "ord_cust_refund_001"}},
+    {"id": "cus_ecom_mix_001", "status": "active", "external_ids": {"orders.customer_id": "ord_cust_mix_001"}}
+  ]],
+  "subscriptions": [[]],
+  "invoices": [[]],
+  "payment_intents": [[]],
+  "charges": [[
+    {"id": "ch_ecom_refund_001", "customer": "cus_ecom_refund_001", "amount": 1500, "currency": "usd", "status": "succeeded"}
+  ]],
+  "refunds": [[
+    {"id": "re_ecom_refund_001", "charge": "ch_ecom_refund_001", "amount": 1500, "currency": "usd", "status": "succeeded"}
+  ]],
+  "products": [[]],
+  "prices": [[]],
+  "invoice_lines": {}
+}

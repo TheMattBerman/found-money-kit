@@ -1,0 +1,12 @@
+{
+  "proposals": [
+    {
+      "proposal_id": "prp_svc_sp_001",
+      "customer_id": "prp_cust_sp_001",
+      "proposed_at": "2026-06-01T12:00:00.000Z",
+      "status": "sent",
+      "amount_minor": 12500,
+      "currency": "usd"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "schema": "hubspot-snapshot.v1",
+  "source": "hubspot",
+  "contacts": [
+    {
+      "id": "hs_ct_saas_fp_001",
+      "properties": {
+        "lifecycle_stage": "customer",
+        "synthetic_customer_key": "syn_saas_fp",
+        "last_activity_at": "2026-06-20T12:00:00Z",
+        "email_opt_out": false,
+        "invalid_address": false
+      }
+    },
+    {
+      "id": "hs_ct_saas_et_001",
+      "properties": {
+        "lifecycle_stage": "customer",
+        "synthetic_customer_key": "syn_saas_et",
+        "last_activity_at": "2026-05-12T12:00:00Z",
+        "email_opt_out": false,
+        "invalid_address": false
+      }
+    },
+    {
+      "id": "hs_ct_saas_cc_001",
+      "properties": {
+        "lifecycle_stage": "customer",
+        "synthetic_customer_key": "syn_saas_cc",
+        "last_activity_at": "2026-04-18T12:00:00Z",
+        "email_opt_out": false,
+        "invalid_address": false
+      }
+    },
+    {
+      "id": "hs_ct_saas_cl_001",
+      "properties": {
+        "lifecycle_stage": "opportunity",
+        "synthetic_customer_key": "syn_saas_cl",
+        "last_activity_at": "2026-05-02T12:00:00Z",
+        "email_opt_out": false,
+        "invalid_address": false
+      }
+    },
+    {
+      "id": "hs_ct_saas_ru_001",
+      "properties": {
+        "lifecycle_stage": "customer",
+        "synthetic_customer_key": "syn_saas_ru",
+        "last_activity_at": "2026-07-20T12:00:00Z",
+        "email_opt_out": false,
+        "invalid_address": false
+      }
+    }
+  ],
+  "deals": [
+    {
+      "id": "hs_dl_saas_cl_001",
+      "properties": {
+        "deal_stage": "closed_lost",
+        "amount_minor": 2100,
+        "currency": "usd",
+        "synthetic_customer_key": "syn_saas_cl",
+        "closed_at": "2026-05-01T00:00:00Z"
+      }
+    }
+  ],
+  "associations": {
+    "hs_dl_saas_cl_001": ["hs_ct_saas_cl_001"]
+  }
+}

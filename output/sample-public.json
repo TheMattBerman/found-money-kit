@@ -1,0 +1,81 @@
+{
+  "format": "found-money-public-v1",
+  "no_send_enforced": true,
+  "proof_tier": "built",
+  "queue": [
+    {
+      "approved": false,
+      "channel": "email",
+      "classification": "expired_trial",
+      "draft": "Your trial has ended. Reply if a quick restart review would help.",
+      "opportunity_value": {
+        "basis": "observed source value \u00d7 25\u201375%",
+        "high": 750.0,
+        "low": 250.0
+      },
+      "priority": 790,
+      "reasons": [
+        "human_approval_required"
+      ],
+      "status": "review",
+      "token": "rec_9f02c0b17b91"
+    },
+    {
+      "approved": false,
+      "channel": null,
+      "classification": "stale_lead",
+      "draft": null,
+      "opportunity_value": {
+        "basis": "unquantified: no observed source value",
+        "high": 0,
+        "low": 0
+      },
+      "priority": 0,
+      "reasons": [
+        "unsubscribed"
+      ],
+      "status": "suppressed",
+      "token": "rec_466cc731c0b5"
+    },
+    {
+      "approved": false,
+      "channel": null,
+      "classification": "lapsed_customer_reorder_gap",
+      "draft": null,
+      "opportunity_value": {
+        "basis": "unquantified: no observed source value",
+        "high": 0,
+        "low": 0
+      },
+      "priority": 0,
+      "reasons": [
+        "contactability_unknown"
+      ],
+      "status": "suppressed",
+      "token": "rec_7dbefd096c40"
+    }
+  ],
+  "segment_cards": {
+    "expired_trial": {
+      "count": 1,
+      "review": 1,
+      "suppressed": 0,
+      "value_high": 750.0,
+      "value_low": 250.0
+    },
+    "lapsed_customer_reorder_gap": {
+      "count": 1,
+      "review": 0,
+      "suppressed": 1,
+      "value_high": 0,
+      "value_low": 0
+    },
+    "stale_lead": {
+      "count": 1,
+      "review": 0,
+      "suppressed": 1,
+      "value_high": 0,
+      "value_low": 0
+    }
+  }
+}

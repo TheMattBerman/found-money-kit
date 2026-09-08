@@ -1,0 +1,4 @@
+appointment_id,customer_id,scheduled_at,status
+apt_svc_ns_001,apt_cust_ns_001,2026-06-15T14:00:00.000Z,no_show
+apt_svc_tn_ns_001,apt_cust_tn_001,2026-05-10T14:00:00.000Z,no_show
+apt_svc_tn_rb_001,apt_cust_tn_001,2026-06-20T14:00:00.000Z,completed

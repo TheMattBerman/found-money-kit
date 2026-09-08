@@ -1,0 +1,50 @@
+[
+  {
+    "path": "tests/contract/test_stripe_connector.py",
+    "label": "Bearer token",
+    "sha256": "bd4f9afbee85a2181274a75d1a4bbb62e1ce026ae9422c4e0a2698e82eab787c",
+    "reason": "Fabricated connector rejection fixture"
+  },
+  {
+    "path": "output/sample-public.json",
+    "label": "Generic secret literal",
+    "sha256": "52d230283f240014ddd644c91c5173fa8fd2d57142037bbeafe8e5aa3de4a5b8",
+    "reason": "Deterministic record tokens"
+  },
+  {
+    "path": "output/sample-public.json",
+    "label": "Generic secret literal",
+    "sha256": "d69313a9eff678abb583fc4a024eede753d4cab9c588bff8e46affd3f809477c",
+    "reason": "Deterministic record tokens"
+  },
+  {
+    "path": "output/sample-public.json",
+    "label": "Generic secret literal",
+    "sha256": "296604fc659a73e89e675656eb05962fdc6f3d1b10ab29d9e5443cb09bbb61a9",
+    "reason": "Deterministic record tokens"
+  },
+  {
+    "path": "tests/contract/test_hubspot_connector.py",
+    "label": "Generic secret literal",
+    "sha256": "3bc86b1dbcd3f19356cd08df2f112ec0f6ee0b717c452a9ced9997c125c00b51",
+    "reason": "Fabricated connector rejection fixture"
+  },
+  {
+    "path": "tests/fixtures/saas/identity/fm039/evidence/identity-graph.json",
+    "label": "Generic secret literal",
+    "sha256": "41873a4afc397c0bd58fefc0a19ecfd70f5103d466dbaeaca101d41a0135109e",
+    "reason": "Deterministic record tokens"
+  },
+  {
+    "path": "tests/fixtures/saas/identity/fm039/evidence/identity-public.json",
+    "label": "Generic secret literal",
+    "sha256": "bc25bbe915ba8311f238c4617b0bda64611b741a9814647176b5564d225e2232",
+    "reason": "Deterministic record tokens"
+  },
+  {
+    "path": "tests/test_build_runner.py",
+    "label": "Generic secret literal",
+    "sha256": "43556c18d9b74ca6dc3534e12f78a03ebe0a32aa0ee62042f3d18e8b669952e0",
+    "reason": "Fabricated connector rejection fixture"
+  }
+]

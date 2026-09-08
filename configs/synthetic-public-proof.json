@@ -1,0 +1,11 @@
+{
+  "schema_version": "found-money-public-proof-config.v1",
+  "scenarios": [
+    "synthetic-saas-v1",
+    "synthetic-ecommerce-v1",
+    "synthetic-service-v1"
+  ],
+  "evidence_class": "synthetic",
+  "real_business_aggregate": "absent",
+  "fm036_aggregate_status": "absent"
+}

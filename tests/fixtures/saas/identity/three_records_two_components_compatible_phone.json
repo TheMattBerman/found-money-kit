@@ -1,0 +1,42 @@
+{
+  "case": "three_records_two_components_compatible_phone",
+  "nodes": [
+    {
+      "node_id": "hubspot:contact:compatible_phone_left_a",
+      "source_system": "hubspot",
+      "object_type": "contact",
+      "source_id": "compatible_phone_left_a",
+      "observed_at": "2026-07-01T12:00:00.000Z",
+      "payload_hash": "4444444444444444444444444444444444444444444444444444444444444444",
+      "email": null,
+      "phone": "+15550104001",
+      "external_ids": {
+        "found_money.synthetic_customer": "cust_compatible_phone"
+      }
+    },
+    {
+      "node_id": "stripe:customer:compatible_phone_left_b",
+      "source_system": "stripe",
+      "object_type": "customer",
+      "source_id": "compatible_phone_left_b",
+      "observed_at": "2026-07-01T12:01:00.000Z",
+      "payload_hash": "5555555555555555555555555555555555555555555555555555555555555555",
+      "email": null,
+      "phone": "+15550104001",
+      "external_ids": {
+        "found_money.synthetic_customer": "cust_compatible_phone"
+      }
+    },
+    {
+      "node_id": "hubspot:contact:compatible_phone_right",
+      "source_system": "hubspot",
+      "object_type": "contact",
+      "source_id": "compatible_phone_right",
+      "observed_at": "2026-07-01T12:02:00.000Z",
+      "payload_hash": "6666666666666666666666666666666666666666666666666666666666666666",
+      "email": null,
+      "phone": "+15550104001",
+      "external_ids": {}
+    }
+  ]
+}

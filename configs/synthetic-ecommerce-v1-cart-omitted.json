@@ -1,0 +1,10 @@
+{
+  "schema_version": "found-money-build-source.v1",
+  "mode": "fixture",
+  "fixture": "synthetic-ecommerce-v1-cart-omitted",
+  "credentials": {
+    "credential_mode": "none",
+    "runtime_mode": "test",
+    "scopes": []
+  }
+}

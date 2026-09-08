@@ -1,0 +1,2 @@
+proposal_id,customer_id,proposed_at,status,amount_minor,currency
+prp_svc_sp_001,prp_cust_sp_001,2026-06-01T12:00:00.000Z,sent,12500,usd

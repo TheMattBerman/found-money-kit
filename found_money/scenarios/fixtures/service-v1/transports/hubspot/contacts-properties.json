@@ -1,0 +1,1 @@
+{"results":[{"fieldType":"text","label":"Email","name":"email","type":"string"},{"fieldType":"text","label":"Phone","name":"phone","type":"string"},{"fieldType":"select","label":"Lifecycle stage","name":"lifecyclestage","type":"enumeration"}]}

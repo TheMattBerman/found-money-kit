@@ -1,0 +1,50 @@
+{
+  "schema_version": "found-money-source-manifest.v1",
+  "sources": [
+    {
+      "source_id": "hubspot",
+      "source_type": "hubspot",
+      "schema_version": "hubspot-crm.2026-03.v1"
+    },
+    {
+      "source_id": "stripe",
+      "source_type": "stripe",
+      "schema_version": "stripe.2026-02-25.clover.v1"
+    },
+    {
+      "source_id": "orders",
+      "source_type": "orders",
+      "schema_version": "orders.v1",
+      "path": "orders.json",
+      "format": "json"
+    },
+    {
+      "source_id": "appointments",
+      "source_type": "appointments",
+      "schema_version": "appointments.v1",
+      "path": "appointments.json",
+      "format": "json"
+    },
+    {
+      "source_id": "proposals",
+      "source_type": "proposals",
+      "schema_version": "proposals.v1",
+      "path": "proposals.json",
+      "format": "json"
+    },
+    {
+      "source_id": "universal-csv",
+      "source_type": "csv",
+      "schema_version": "orders.v1",
+      "path": "universal.csv",
+      "format": "csv"
+    },
+    {
+      "source_id": "universal-json",
+      "source_type": "json",
+      "schema_version": "appointments.v1",
+      "path": "universal.json",
+      "format": "json"
+    }
+  ]
+}

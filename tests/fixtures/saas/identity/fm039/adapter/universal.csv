@@ -1,0 +1,2 @@
+order_id,customer_id,ordered_at,currency,total_minor
+order_u001,customer_u001,2026-07-29T18:00:00Z,USD,1000

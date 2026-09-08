@@ -1,0 +1,24 @@
+{
+  "customers": [[
+    {"id": "cus_saas_fp_001", "status": "active", "synthetic_customer_key": "syn_saas_fp"},
+    {"id": "cus_saas_et_001", "synthetic_customer_key": "syn_saas_et"},
+    {"id": "cus_saas_cc_001", "status": "canceled", "canceled_at": "2026-04-15T00:00:00Z", "amount_minor": 800, "currency": "usd", "synthetic_customer_key": "syn_saas_cc"},
+    {"id": "cus_saas_cl_001", "status": "active", "synthetic_customer_key": "syn_saas_cl"},
+    {"id": "cus_saas_ru_001", "status": "active", "synthetic_customer_key": "syn_saas_ru"}
+  ]],
+  "subscriptions": [[
+    {"id": "sub_saas_et_001", "customer": "cus_saas_et_001", "status": "trialing", "trial_end": "2026-05-01T00:00:00Z", "converted": false, "amount_minor": 1200, "currency": "usd", "synthetic_customer_key": "syn_saas_et"},
+    {"id": "sub_saas_ru_001", "customer": "cus_saas_ru_001", "status": "active", "renewal_at": "2026-08-15T00:00:00Z", "amount_minor": 3500, "currency": "usd", "synthetic_customer_key": "syn_saas_ru"}
+  ]],
+  "invoices": [[
+    {"id": "in_saas_fp_001", "customer": "cus_saas_fp_001", "status": "open", "collection_outcome": "payment_failed", "amount_due_cents": 4900, "currency": "usd", "attempted_at": "2026-06-01T10:00:00Z", "synthetic_customer_key": "syn_saas_fp"}
+  ]],
+  "payment_intents": [[]],
+  "charges": [[]],
+  "refunds": [[]],
+  "products": [[]],
+  "prices": [[]],
+  "invoice_lines": {
+    "in_saas_fp_001": [[]]
+  }
+}

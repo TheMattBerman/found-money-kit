@@ -1,0 +1,29 @@
+{
+  "note": "AC-5 fixture marker: forbidden identity fields are rejected by StrategyEvidencePacketV1 before provider invocation; see test_forbidden_identity_field_rejected_in_evidence_packet.",
+  "invalid_payload_examples": [
+    {
+      "schema_version": "strategy-evidence-packet.v1",
+      "run_id": "run_forbidden",
+      "built_at": "2026-07-29T18:00:25.000Z",
+      "customer_token": "cust_token_x",
+      "pile_facts": []
+    },
+    {
+      "schema_version": "strategy-evidence-packet.v1",
+      "run_id": "run_forbidden",
+      "built_at": "2026-07-29T18:00:25.000Z",
+      "pile_facts": [
+        {
+          "pile_id": "payment_rescue",
+          "currency": "usd",
+          "selected_value_minor": "4900",
+          "customer_count": 1,
+          "economic_unit_count": 1,
+          "value_basis": "observed_face_value",
+          "confidence_class": "observed",
+          "economic_unit_key": "stripe_invoice:inv_x"
+        }
+      ]
+    }
+  ]
+}

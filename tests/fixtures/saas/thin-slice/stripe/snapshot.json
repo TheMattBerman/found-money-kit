@@ -1,0 +1,35 @@
+{
+  "schema": "stripe-snapshot.v1",
+  "source": "stripe",
+  "customers": [
+    {
+      "id": "cus_synth_001",
+      "synthetic_customer_key": "cust_synth_001",
+      "status": "active"
+    }
+  ],
+  "invoices": [
+    {
+      "id": "inv_failed_001",
+      "customer_id": "cus_synth_001",
+      "synthetic_customer_key": "cust_synth_001",
+      "status": "open",
+      "collection_outcome": "payment_failed",
+      "amount_due_cents": 4900,
+      "currency": "usd",
+      "attempted_at": "2026-06-01T10:00:00Z",
+      "role": "failed_invoice"
+    },
+    {
+      "id": "inv_paid_001",
+      "customer_id": "cus_synth_001",
+      "synthetic_customer_key": "cust_synth_001",
+      "status": "paid",
+      "collection_outcome": "payment_succeeded",
+      "amount_due_cents": 4900,
+      "currency": "usd",
+      "paid_at": "2026-07-01T10:00:00Z",
+      "role": "later_success_control"
+    }
+  ]
+}

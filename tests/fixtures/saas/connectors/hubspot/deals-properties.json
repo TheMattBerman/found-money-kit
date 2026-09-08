@@ -1,0 +1,1 @@
+{"results":[{"name":"closedate","label":"Close date","type":"datetime","fieldType":"date"},{"name":"dealstage","label":"Deal stage","type":"enumeration","fieldType":"select"},{"name":"pipeline","label":"Pipeline","type":"enumeration","fieldType":"select"}]}

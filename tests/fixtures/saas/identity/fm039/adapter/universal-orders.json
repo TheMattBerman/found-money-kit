@@ -1,0 +1,1 @@
+{"schema_version":"orders.v1","orders":[{"order_id":"order_u001","customer_id":"customer_u001","ordered_at":"2026-07-29T18:00:00Z","currency":"USD","total_minor":1000}]}

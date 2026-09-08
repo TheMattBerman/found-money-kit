@@ -1,0 +1,43 @@
+{
+  "case": "strongly_joined_same_source_phone",
+  "expect_merge": true,
+  "match_rule": "same_source_object_id",
+  "nodes": [
+    {
+      "node_id": "node_a_same_phone",
+      "source_system": "hubspot",
+      "object_type": "contact",
+      "source_id": "hs_shared_phone_001",
+      "observed_at": "2026-07-01T12:00:00.000Z",
+      "payload_hash": "4444444444444444444444444444444444444444444444444444444444444444",
+      "email": null,
+      "phone": "+15550103001",
+      "external_ids": {},
+      "display_name": "Strong Same Source A"
+    },
+    {
+      "node_id": "node_b_same_phone",
+      "source_system": "hubspot",
+      "object_type": "contact",
+      "source_id": "hs_shared_phone_001",
+      "observed_at": "2026-07-01T12:01:00.000Z",
+      "payload_hash": "5555555555555555555555555555555555555555555555555555555555555555",
+      "email": null,
+      "phone": "+15550103001",
+      "external_ids": {},
+      "display_name": "Strong Same Source B"
+    },
+    {
+      "node_id": "node_c_same_phone",
+      "source_system": "hubspot",
+      "object_type": "contact",
+      "source_id": "hs_shared_phone_001",
+      "observed_at": "2026-07-01T12:02:00.000Z",
+      "payload_hash": "6666666666666666666666666666666666666666666666666666666666666666",
+      "email": null,
+      "phone": "+15550103001",
+      "external_ids": {},
+      "display_name": "Strong Same Source C"
+    }
+  ]
+}

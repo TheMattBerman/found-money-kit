@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en" data-print-report="fm029">
+<head>
+  <meta charset="utf-8">
+  <meta name="print-report-contract" content="found-money-print-v1">
+  <meta name="print-report-status" content="{{ report_status }}">
+  <title>Found Money / Recovery Report — {{ run_id }}</title>
+  <style>
+    @page { size: Letter; margin: 0; }
+    :root {
+      --ink: #16202b;
+      --muted: #5f6d78;
+      --line: #d9e1e5;
+      --paper: #ffffff;
+      --wash: #f3f7f7;
+      --navy: #102331;
+      --teal: #0c756c;
+      --mint: #d8f1e7;
+      --orange: #d9783b;
+      --orange-wash: #fff1e8;
+      --danger: #9b4f2f;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      color: var(--ink);
+      background: #e6ecee;
+      font-family: "Avenir Next", Avenir, "Helvetica Neue", Arial, sans-serif;
+      font-size: 10.5pt;
+      line-height: 1.4;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .report-canvas { padding: 28px 0; }
+    .print-page {
+      position: relative;
+      width: 8.5in;
+      height: 11in;
+      min-height: 11in;
+      margin: 0 auto 28px;
+      padding: 0.62in 0.68in 0.56in;
+      overflow: hidden;
+      background: var(--paper);
+      box-shadow: 0 12px 36px rgba(16, 35, 49, 0.13);
+      page-break-after: always;
+    }
+    .print-page:last-child { page-break-after: auto; }
+    .cover {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #f5fbf9;
+      background: var(--navy);
+    }
+    .cover::after {
+      position: absolute;
+      right: -1.3in;
+      bottom: -1.8in;
+      width: 4.2in;
+      height: 4.2in;
+      border: 1px solid rgba(216, 241, 231, 0.22);
+      border-radius: 50%;
+      content: "";
+      box-shadow: 0 0 0 28px rgba(216, 241, 231, 0.04), 0 0 0 56px rgba(216, 241, 231, 0.035);
+    }
+    .cover-top, .page-top, .page-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 7.5pt;
+      font-weight: 800;
+    }
+    .cover-top { color: #b4d8cf; }
+    .cover-body { position: relative; z-index: 1; max-width: 6.5in; }
+    .eyebrow, .section-kicker {
+      margin: 0 0 12px;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 8pt;
+      font-weight: 800;
+    }
+    .cover .eyebrow { color: #f0b37c; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      letter-spacing: -0.035em;
+      line-height: 1.02;
+    }
+    h1 { max-width: 6.2in; margin-bottom: 18px; font-size: 37pt; font-weight: 700; }
+    h2 { margin-bottom: 14px; font-size: 25pt; }
+    h3 { margin-bottom: 7px; font-size: 11pt; line-height: 1.15; }
+    .dek { max-width: 5.8in; margin-bottom: 28px; color: #c9ded9; font-size: 13pt; line-height: 1.45; }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 27px;
+      padding: 6px 10px;
+      border: 1px solid currentColor;
+      border-radius: 999px;
+      color: #d4f0e7;
+      font-size: 8.5pt;
+      font-weight: 800;
+    }
+    .status-badge.hold { color: #ffd4ad; }
+    .hero-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 28px; }
+    .hero-card {
+      min-width: 0;
+      padding: 13px 14px 12px;
+      border: 1px solid rgba(216, 241, 231, 0.24);
+      border-radius: 12px;
+      background: rgba(216, 241, 231, 0.08);
+    }
+    .hero-card strong { display: block; margin-bottom: 3px; color: #ffffff; font-size: 16pt; }
+    .hero-card span { color: #b4d8cf; font-size: 8.5pt; }
+    .cover-meta { position: relative; z-index: 1; color: #a9c7c2; font-size: 8.5pt; }
+    .cover-meta strong { color: #f5fbf9; }
+    .page-top { padding-bottom: 10px; border-bottom: 1px solid var(--line); color: var(--muted); }
+    .page-top strong { color: var(--navy); }
+    .page-top .mark { color: var(--teal); }
+    .page-body { position: relative; z-index: 1; }
+    .section-kicker { margin-top: 25px; }
+    .lede { max-width: 6.1in; margin-bottom: 18px; color: var(--muted); font-size: 11.5pt; }
+    .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 17px 0 22px; }
+    .metric {
+      min-height: 71px;
+      padding: 12px 13px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--wash);
+    }
+    .metric strong { display: block; margin: 3px 0 2px; color: var(--navy); font-size: 16pt; }
+    .metric span, .metric small { color: var(--muted); font-size: 8.5pt; }
+    .metric.accent { border-color: #a8d9cb; background: var(--mint); }
+    .metric.warn { border-color: #f1c4a1; background: var(--orange-wash); }
+    .panel {
+      margin: 13px 0;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: #fbfcfc;
+    }
+    .panel.mint { border-color: #b8ded3; background: var(--mint); }
+    .panel.warn { border-color: #efc09b; background: var(--orange-wash); }
+    .panel h3 { color: var(--navy); }
+    .panel p:last-child { margin-bottom: 0; }
+    .status-panel { display: flex; align-items: flex-start; gap: 12px; }
+    .status-dot { flex: 0 0 auto; width: 10px; height: 10px; margin-top: 5px; border-radius: 50%; background: var(--orange); }
+    .status-dot.good { background: var(--teal); }
+    .status-panel strong { display: block; margin-bottom: 3px; color: var(--danger); }
+    .status-panel.good strong { color: var(--teal); }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px 18px; margin: 14px 0; }
+    .detail-grid > div { padding-top: 8px; border-top: 1px solid var(--line); }
+    dt { margin-bottom: 3px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-size: 7.5pt; font-weight: 800; }
+    dd { margin: 0; color: var(--ink); font-size: 9.5pt; }
+    .muted { color: var(--muted); }
+    .small { font-size: 8.5pt; }
+    .tiny { font-size: 7.5pt; }
+    .nowrap { white-space: nowrap; }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0 18px; font-size: 9pt; }
+    th { padding: 8px 9px; border-bottom: 2px solid var(--navy); color: var(--muted); text-align: left; text-transform: uppercase; letter-spacing: 0.08em; font-size: 7.5pt; }
+    td { padding: 9px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    tr:last-child td { border-bottom: 0; }
+    .pill {
+      display: inline-block;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: var(--mint);
+      color: var(--teal);
+      font-size: 7.5pt;
+      font-weight: 800;
+    }
+    .pill.hold { background: var(--orange-wash); color: var(--danger); }
+    .play-card {
+      margin: 12px 0;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fbfcfc;
+    }
+    .play-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .play-number { color: var(--orange); font-family: Georgia, "Times New Roman", serif; font-size: 23pt; font-weight: 700; line-height: 1; }
+    .play-card h3 { margin: 2px 0 5px; font-family: Georgia, "Times New Roman", serif; font-size: 15pt; }
+    .play-card p { margin-bottom: 8px; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+    .tag { padding: 4px 7px; border-radius: 5px; background: #edf1f2; color: var(--muted); font-size: 7.5pt; }
+    ol, ul { margin: 7px 0 0; padding-left: 19px; }
+    li { margin: 3px 0; }
+    .check-list { list-style: none; padding-left: 0; }
+    .check-list li { position: relative; padding-left: 20px; }
+    .check-list li::before { position: absolute; left: 0; color: var(--teal); content: "✓"; font-weight: 900; }
+    .missing-list li::before { color: var(--orange); content: "—"; }
+    .sequence { margin-top: 9px; }
+    .sequence-row { display: grid; grid-template-columns: 1.18in 1fr; gap: 10px; padding: 8px 0; border-top: 1px solid var(--line); }
+    .sequence-row:first-child { border-top: 0; }
+    .sequence-label { color: var(--teal); font-size: 8pt; font-weight: 800; }
+    .sequence-text { color: var(--ink); font-size: 9pt; }
+    .card-header { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+    .card-header h3 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: 17pt; }
+    .concept-field { display: grid; grid-template-columns: 1.55in 1fr; gap: 10px; padding: 7px 0; border-top: 1px solid var(--line); }
+    .concept-field:first-child { border-top: 0; }
+    .concept-field strong { color: var(--muted); font-size: 8pt; }
+    .concept-field span { font-size: 9pt; }
+    [data-print-page$="-sequence"] .section-kicker { margin-top: 18px; margin-bottom: 8px; }
+    [data-print-page$="-sequence"] h2 { margin-bottom: 10px; font-size: 22pt; }
+    [data-print-page$="-sequence"] .panel { margin: 8px 0; padding: 10px 12px; }
+    [data-print-page$="-sequence"] .detail-grid { gap: 5px 14px; margin: 8px 0; }
+    [data-print-page$="-sequence"] .sequence-row { grid-template-columns: .9in 1fr; gap: 7px; padding: 5px 0; }
+    [data-print-page$="-sequence"] .sequence-label { font-size: 7.5pt; }
+    [data-print-page$="-sequence"] .sequence-text { font-size: 8pt; line-height: 1.3; }
+    .footer-rule { position: absolute; right: 0.68in; bottom: 0.36in; left: 0.68in; height: 1px; background: var(--line); }
+    .page-footer { position: absolute; right: 0.68in; bottom: 0.2in; left: 0.68in; color: var(--muted); font-size: 7pt; }
+    .cover .page-footer { color: #8caaa4; }
+    .avoid-break { page-break-inside: avoid; }
+    @media print {
+      body { background: #ffffff; }
+      .report-canvas { padding: 0; }
+      .print-page { margin: 0; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="report-canvas" data-print-report="fm029">
+    <section class="print-page cover" data-print-page="cover" aria-labelledby="cover-title">
+      <div class="cover-top"><span>Found Money Kit</span><span>Offline / review only</span></div>
+      <div class="cover-body">
+        <p class="eyebrow">Recovery report / {{ run_id }}</p>
+        <h1 id="cover-title">Turn silent revenue into a reviewable plan.</h1>
+        <p class="dek">{{ find_promise }}</p>
+        <span class="status-badge{% if not report_complete %} hold{% endif %}">{{ report_status_label }}</span>
+        <div class="hero-row">
+          {% if identified_opportunity %}
+            {% for row in identified_opportunity %}
+            <div class="hero-card"><strong>{{ row.amount_display }}</strong><span>identified opportunity</span></div>
+            {% endfor %}
+          {% else %}
+            <div class="hero-card"><strong>—</strong><span>No identified opportunity</span></div>
+          {% endif %}
+          <div class="hero-card"><strong>{{ pile_count }}</strong><span>ranked piles</span></div>
+          <div class="hero-card"><strong>{{ customer_count }}</strong><span>customers in scope</span></div>
+          <div class="hero-card"><strong>{{ play_count }}</strong><span>Recovery Plays</span></div>
+        </div>
+      </div>
+      <div class="cover-meta">
+        <p><strong>Run posture:</strong> {{ strategy_stage }} / no send, schedule, or upstream write</p>
+        <p><strong>Next action:</strong> {{ next_action }}</p>
+      </div>
+      <div class="page-footer"><span>Found Money / FM-029</span><span>1</span></div>
+    </section>
+
+    <section class="print-page" data-print-page="basis" aria-labelledby="basis-title">
+      <div class="page-top"><span class="mark">Money Map</span><strong>Evidence basis</strong></div>
+      <div class="page-body">
+        <p class="section-kicker">01 / The basis</p>
+        <h2 id="basis-title">What the run can support.</h2>
+        <p class="lede">The headline is kept separate from its basis. Observed, modeled, and unquantified values remain visibly distinct all the way into print.</p>
+        <div class="metric-grid">
+          {% if identified_opportunity %}
+            {% for row in identified_opportunity %}
+            <div class="metric accent"><span>Identified opportunity / {{ row.currency }}</span><strong>{{ row.amount_display }}</strong><small>major units</small></div>
+            {% endfor %}
+          {% else %}
+            <div class="metric"><span>Identified opportunity</span><strong>—</strong><small>no quantified amount</small></div>
+          {% endif %}
+          <div class="metric"><span>Data gaps</span><strong>{{ data_gap_count }}</strong><small>named gaps retained</small></div>
+          <div class="metric"><span>Overlap exclusions</span><strong>{{ overlap_exclusion_count }}</strong><small>excluded from headline</small></div>
+          {% if named_data_gaps %}<div class="metric"><span>Named data gaps</span><strong>{{ named_data_gaps|join(", ") }}</strong><small>public-safe source gaps</small></div>{% endif %}
+          {% if event_exclusions_by_reason %}<div class="metric"><span>Event exclusions</span><strong>{% for reason, count in event_exclusions_by_reason.items()|sort %}{{ reason }} {{ count }}{% if not loop.last %}; {% endif %}{% endfor %}</strong><small>suppressed candidates</small></div>{% endif %}
+        </div>
+        <div class="panel mint">
+          <h3>Basis counts by currency</h3>
+          {% if basis_counts %}
+          <table>
+            <thead><tr><th>Currency</th><th>Observed</th><th>Modeled</th><th>Unquantified</th></tr></thead>
+            <tbody>
+              {% for row in basis_counts %}
+              <tr><td><strong>{{ row.currency }}</strong></td><td>{{ row.observed_event_count }}</td><td>{{ row.modeled_event_count }}</td><td>{{ row.unquantified_event_count }}</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% else %}<p class="muted">No basis counts were supplied in this run.</p>{% endif %}
+          <p class="small">Observed values are source-backed. Modeled values require an explicit model basis. Unquantified items stay visible as unquantified; they are not converted into a guess.</p>
+        </div>
+        {% if not separate_pile_pages %}
+        <div class="panel">
+          <h3>Ranked piles carried into strategy</h3>
+          {% if piles %}
+          <table>
+            <thead><tr><th>Rank</th><th>Pile</th><th>Selected value</th><th>Basis</th><th>Confidence</th></tr></thead>
+            <tbody>
+              {% for pile in piles %}
+              <tr><td><strong>#{{ pile.rank }}</strong></td><td>{{ pile.display_name }}</td><td>{{ pile.value }}</td><td>{{ pile.basis }}</td><td><span class="pill">{{ pile.confidence }}</span></td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% else %}<p class="muted">No ranked piles were supplied in this run.</p>{% endif %}
+        </div>
+        {% endif %}
+      </div>
+      <div class="footer-rule"></div><div class="page-footer"><span>Run {{ run_id }}</span><span>Basis / review only</span></div>
+    </section>
+
+    {% if separate_pile_pages %}
+    {% for piles in pile_pages %}
+    <section class="print-page" data-print-page="piles-{{ loop.index }}">
+      <div class="page-top"><span class="mark">Money Map</span><strong>Opportunity detail</strong></div>
+      <div class="page-body"><p class="section-kicker">The ranked opportunities</p><h2>Every value keeps its basis.</h2>
+        <div class="panel">
+          <h3>Ranked piles carried into strategy</h3>
+          {% if piles %}
+          <table>
+            <thead><tr><th>Rank</th><th>Pile</th><th>Selected value</th><th>Basis</th><th>Confidence</th></tr></thead>
+            <tbody>
+              {% for pile in piles %}
+              <tr><td><strong>#{{ pile.rank }}</strong></td><td>{{ pile.display_name }}</td><td>{{ pile.value }}</td><td>{{ pile.basis }}</td><td><span class="pill">{{ pile.confidence }}</span></td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% else %}<p class="muted">No ranked piles were supplied in this run.</p>{% endif %}
+        </div>
+      </div><div class="footer-rule"></div><div class="page-footer"><span>Run {{ run_id }}</span><span>Opportunity detail / {{ loop.index }}</span></div>
+    </section>
+    {% endfor %}
+    {% endif %}
+
+    <section class="print-page" data-print-page="plays-index" aria-labelledby="plays-title">
+      <div class="page-top"><span class="mark">Recovery Plays</span><strong>Available paths</strong></div>
+      <div class="page-body">
+        <p class="section-kicker">02 / The play set</p>
+        <h2 id="plays-title">What can be acted on next.</h2>
+        <div class="panel status-panel{% if report_complete %} good{% else %} warn{% endif %}">
+          <span class="status-dot{% if report_complete %} good{% endif %}"></span>
+          <div><strong>{{ report_status_label }}</strong><span>{{ available_play_count }} of {{ required_play_count }} required play records are present; {{ complete_play_count }} meet the full print contract.</span></div>
+        </div>
+        {% if plays %}
+          {% for play in plays %}
+          <div class="play-card avoid-break">
+            <div class="play-card-top"><div><span class="play-number">0{{ play.rank }}</span><h3>{{ play.title }}</h3></div><span class="pill{% if not play.complete %} hold{% endif %}">{% if play.complete %}complete{% else %}upstream fields missing{% endif %}</span></div>
+            <p class="muted small">{{ play.play_id }} / pile {{ play.pile_id }} / {{ play.value }}</p>
+            <p>{{ play.rationale }}</p>
+            <div class="tag-row"><span class="tag">{{ play.value_basis }}</span><span class="tag">{{ play.recommended_actions|length }} recommended actions</span><span class="tag">rank {{ play.rank }}</span></div>
+            {% if play.missing %}<p class="small muted"><strong>Missing from this run:</strong> {{ play.missing|join(", ") }}.</p>{% endif %}
+          </div>
+          {% endfor %}
+        {% else %}
+          <div class="panel warn"><h3>No Recovery Play output supplied.</h3><p>The report stops here rather than creating a generic recommendation.</p></div>
+        {% endif %}
+        <p class="small muted">A print packet is evidence of the generated output. It is not a send authorization, launch decision, or live-business result.</p>
+      </div>
+      <div class="footer-rule"></div><div class="page-footer"><span>Run {{ run_id }}</span><span>Play set / no-send boundary</span></div>
+    </section>
+
+    {% for play in plays %}
+    <section class="print-page" data-print-page="play-{{ play.rank }}-overview" aria-labelledby="play-{{ play.rank }}-title">
+      <div class="page-top"><span class="mark">Recovery Play {{ play.rank }}</span><strong>{{ play.play_id }}</strong></div>
+      <div class="page-body">
+        <p class="section-kicker">03 / Play detail</p>
+        <h2 id="play-{{ play.rank }}-title">{{ play.title }}</h2>
+        <p class="lede">{{ play.rationale }}</p>
+        <div class="detail-grid">
+          <div><dt>Campaign name</dt><dd>{{ play.campaign }}</dd></div>
+          <div><dt>Campaign strategy</dt><dd>{{ play.strategy }}</dd></div>
+          <div><dt>Pile / selected value</dt><dd>{{ play.pile_id }} / {{ play.value }}</dd></div>
+          <div><dt>Value basis</dt><dd>{{ play.value_basis }}</dd></div>
+          <div><dt>Audience</dt><dd>{{ play.audience }}</dd></div>
+          <div><dt>Recoverability</dt><dd>{{ play.recoverability }}</dd></div>
+          <div><dt>Diagnosis</dt><dd>{{ play.diagnosis }}</dd></div>
+        </div>
+        <div class="two-col">
+          <div class="panel mint"><h3>Offer</h3><p>{{ play.offer }}</p><p class="small muted">{{ play.offer_rationale }}</p></div>
+          <div class="panel"><h3>Constraints</h3><p>{{ play.constraints }}</p></div>
+        </div>
+        <div class="detail-grid">
+          <div><dt>Lifecycle sequence</dt><dd>{{ play.lifecycle_sequence }}</dd></div>
+          <div><dt>Channel emphasis</dt><dd>{{ play.channel_emphasis }}</dd></div>
+          <div><dt>Creative big idea</dt><dd>{{ play.creative_big_idea }}</dd></div>
+        </div>
+        <div class="panel">
+          <h3>Recommended actions</h3>
+          {% if play.recommended_actions %}<ol>{% for action in play.recommended_actions %}<li>{{ action }}</li>{% endfor %}</ol>{% else %}<p class="muted">No recommended actions supplied.</p>{% endif %}
+        </div>
+        {% if play.missing %}<div class="panel warn"><h3>Print completeness hold</h3><p>This play is not represented as complete because the following upstream fields are missing: {{ play.missing|join(", ") }}.</p></div>{% endif %}
+      </div>
+      <div class="footer-rule"></div><div class="page-footer"><span>{{ play.play_id }} / review only</span><span>Play {{ play.rank }}</span></div>
+    </section>
+
+    <section class="print-page" data-print-page="play-{{ play.rank }}-sequence" aria-labelledby="play-{{ play.rank }}-sequence-title">
+      <div class="page-top"><span class="mark">Recovery Play {{ play.rank }}</span><strong>Sequence &amp; controls</strong></div>
+      <div class="page-body">
+        <p class="section-kicker">04 / Activation logic</p>
+        <h2 id="play-{{ play.rank }}-sequence-title">The path from diagnosis to action.</h2>
+        <div class="two-col">
+          <div class="panel"><h3>Email sequence</h3><div class="sequence">{% if play.email_sequence %}{% for row in play.email_sequence %}<div class="sequence-row"><span class="sequence-label">{{ row.label }}</span><span class="sequence-text">{{ row.text }}</span></div>{% endfor %}{% else %}<p class="muted small">{{ print_missing_text }}</p>{% endif %}</div></div>
+          <div class="panel"><h3>SMS, when available</h3><div class="sequence">{% if play.sms %}{% for row in play.sms %}<div class="sequence-row"><span class="sequence-label">{{ row.label }}</span><span class="sequence-text">{{ row.text }}</span></div>{% endfor %}{% else %}<p class="muted small">Not supplied for this play.</p>{% endif %}</div></div>
+        </div>
+        <div class="panel"><h3>Task / talk track</h3><div class="sequence">{% if play.task_talk_track %}{% for row in play.task_talk_track %}<div class="sequence-row"><span class="sequence-label">{{ row.label }}</span><span class="sequence-text">{{ row.text }}</span></div>{% endfor %}{% else %}<p class="muted small">{{ print_missing_text }}</p>{% endif %}</div></div>
+        <div class="detail-grid">
+          <div><dt>Primary CTA</dt><dd>{{ play.cta }}</dd></div>
+          <div><dt>Urgency</dt><dd>{{ play.urgency }}</dd></div>
+          <div><dt>Tracking</dt><dd>{{ play.tracking }}</dd></div>
+          <div><dt>Success event</dt><dd>{{ play.success_event }}</dd></div>
+        </div>
+        <div class="two-col">
+          <div class="panel"><h3>Objections</h3>{% if play.objections %}<div class="sequence">{% for row in play.objections %}<div class="sequence-row"><span class="sequence-label">{{ row.label }}</span><span class="sequence-text">{{ row.text }}</span></div>{% endfor %}</div>{% else %}<p class="muted small">{{ print_missing_text }}</p>{% endif %}</div>
+          <div class="panel"><h3>Calendar / stop conditions</h3>{% if play.calendar or play.stop_conditions %}<div class="sequence">{% for row in play.calendar %}<div class="sequence-row"><span class="sequence-label">{{ row.label }}</span><span class="sequence-text">{{ row.text }}</span></div>{% endfor %}{% for row in play.stop_conditions %}<div class="sequence-row"><span class="sequence-label">{{ row.label }}</span><span class="sequence-text">{{ row.text }}</span></div>{% endfor %}</div>{% else %}<p class="muted small">{{ print_missing_text }}</p>{% endif %}</div>
+        </div>
+      </div>
+      <div class="footer-rule"></div><div class="page-footer"><span>{{ play.play_id }} / no-send boundary</span><span>Sequence {{ play.rank }}</span></div>
+    </section>
+
+    {% if play.concept_cards %}
+      {% for card in play.concept_cards %}
+      <section class="print-page" data-print-page="play-{{ play.rank }}-card-{{ card.number }}" aria-labelledby="play-{{ play.rank }}-card-{{ card.number }}-title">
+        <div class="page-top"><span class="mark">Recovery Play {{ play.rank }}</span><strong>Concept Card {{ card.number }} / 3</strong></div>
+        <div class="page-body">
+          <p class="section-kicker">05 / Creative concept</p>
+          <div class="card-header"><h2 id="play-{{ play.rank }}-card-{{ card.number }}-title">{{ card.name }}</h2><span class="pill">pile fit: {{ play.pile_id }}</span></div>
+          <p class="lede">A production-ready concept direction, not a finished video script or production asset.</p>
+          <div class="panel">
+            <div class="concept-field"><strong>Card ID</strong><span>{{ card.card_id }}</span></div>
+            {% for field in card.fields %}<div class="concept-field"><strong>{{ field.label }}</strong><span>{{ field.value }}</span></div>{% endfor %}
+          </div>
+          <div class="panel mint"><h3>Scope boundary</h3><p>This card remains at concept level. It does not authorize production, media spend, publication, or a claim of finished creative.</p></div>
+        </div>
+        <div class="footer-rule"></div><div class="page-footer"><span>{{ card.card_id }} / concept level</span><span>Card {{ card.number }} / 3</span></div>
+      </section>
+      {% endfor %}
+    {% else %}
+      <section class="print-page" data-print-page="play-{{ play.rank }}-concepts" aria-labelledby="play-{{ play.rank }}-concepts-title">
+        <div class="page-top"><span class="mark">Recovery Play {{ play.rank }}</span><strong>Concept Cards</strong></div>
+        <div class="page-body">
+          <p class="section-kicker">05 / Creative concept</p>
+          <h2 id="play-{{ play.rank }}-concepts-title">Concept Cards are not present.</h2>
+          <div class="panel warn"><h3>Upstream contract required</h3><p>This packet does not fabricate cards. FM-026 must supply three grounded Concept Cards for this play before the print report can be complete.</p></div>
+        </div>
+        <div class="footer-rule"></div><div class="page-footer"><span>{{ play.play_id }} / concept level</span><span>Concept hold</span></div>
+      </section>
+    {% endif %}
+    {% endfor %}
+
+    <section class="print-page" data-print-page="review" aria-labelledby="review-title">
+      <div class="page-top"><span class="mark">Review &amp; handoff</span><strong>Evidence record</strong></div>
+      <div class="page-body">
+        <p class="section-kicker">06 / Human control</p>
+        <h2 id="review-title">What this packet proves — and what it does not.</h2>
+        <div class="panel{% if report_complete %} mint{% else %} warn{% endif %}"><h3>{{ report_status_label }}</h3><p>The generated report is tied to <strong>{{ run_id }}</strong>. The print packet is a review artifact; it is not publication proof or a live-business result.</p></div>
+        <div class="two-col">
+          <div class="panel"><h3>Mechanical checks captured</h3><ul class="check-list"><li>US-Letter page box and PDF header</li><li>Non-blank page text and embedded fonts</li><li>Required report sections and play IDs</li><li>Page bounds, local resources, and no network dependency</li><li>Observed / modeled / unquantified labels retained</li></ul></div>
+          <div class="panel"><h3>Fresh human print review</h3><ul class="check-list missing-list"><li>Readability and hierarchy on every page</li><li>Tables and sequences remain intact</li><li>Concept Cards and URLs reviewed</li><li>Margins, fonts, clipping, and orphan headings reviewed</li><li>Reviewer name and exact-head decision recorded separately</li></ul></div>
+        </div>
+        <div class="panel"><h3>Operating boundary</h3><p>No email, SMS, CRM, payment, ad, audience, scheduling, or publication action is performed by this report. Any missing strategy or launch content remains explicitly withheld.</p></div>
+        <div class="panel"><h3>Next action</h3><p>{{ next_action }}</p></div>
+      </div>
+      <div class="footer-rule"></div><div class="page-footer"><span>Found Money / FM-029</span><span>Human review required</span></div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,44 @@
+{
+  "case": "household_email",
+  "expect_merge": false,
+  "match_rule": null,
+  "nodes": [
+    {
+      "node_id": "hubspot:contact:role_a",
+      "source_system": "hubspot",
+      "object_type": "contact",
+      "source_id": "role_a",
+      "observed_at": "2026-07-01T12:00:00.000Z",
+      "payload_hash": "5555555555555555555555555555555555555555555555555555555555555555",
+      "email": "billing@acme.invalid",
+      "phone": null,
+      "external_ids": {},
+      "display_name": "Role A"
+    },
+    {
+      "node_id": "hubspot:contact:role_b",
+      "source_system": "hubspot",
+      "object_type": "contact",
+      "source_id": "role_b",
+      "observed_at": "2026-07-01T12:01:00.000Z",
+      "payload_hash": "6666666666666666666666666666666666666666666666666666666666666666",
+      "email": "billing@acme.invalid",
+      "phone": null,
+      "external_ids": {},
+      "display_name": "Role B"
+    },
+    {
+      "node_id": "stripe:customer:role_c",
+      "source_system": "stripe",
+      "object_type": "customer",
+      "source_id": "role_c",
+      "observed_at": "2026-07-01T12:02:00.000Z",
+      "payload_hash": "7777777777777777777777777777777777777777777777777777777777777777",
+      "email": "billing@acme.invalid",
+      "phone": null,
+      "external_ids": {},
+      "display_name": "Role C"
+    }
+  ],
+  "expect_quarantine": true
+}

@@ -1,0 +1,91 @@
+{
+  "$schema_note": "Every PileId in found_money/contracts/map.py exactly once. Enforcement must fail on a missing or duplicated pile.",
+  "source": "Found Money recovery operating rules",
+  "piles": {
+    "payment_rescue": {
+      "cohort": "customer",
+      "warmth": "involuntary",
+      "touches": 3,
+      "reengage_days": null
+    },
+    "failed_payment": {
+      "cohort": "customer",
+      "warmth": "involuntary",
+      "touches": 3,
+      "reengage_days": null
+    },
+    "canceled_customer": {
+      "cohort": "customer",
+      "warmth": "warm",
+      "touches": 2,
+      "reengage_days": 90
+    },
+    "lapsed_repeat_buyer": {
+      "cohort": "customer",
+      "warmth": "warm",
+      "touches": 2,
+      "reengage_days": 90
+    },
+    "disappeared_high_value_customer": {
+      "cohort": "customer",
+      "warmth": "warm",
+      "touches": 2,
+      "reengage_days": 90
+    },
+    "overdue_reorder": {
+      "cohort": "customer",
+      "warmth": "warm",
+      "touches": 2,
+      "reengage_days": 90
+    },
+    "renewal_upsell": {
+      "cohort": "customer",
+      "warmth": "warm",
+      "touches": 3,
+      "reengage_days": null
+    },
+    "closed_lost_stale_deal": {
+      "cohort": "prospect",
+      "warmth": "cold",
+      "touches": 1,
+      "reengage_days": 90,
+      "no_email_play": true
+    },
+    "silent_proposal": {
+      "cohort": "prospect",
+      "warmth": "cold",
+      "touches": 1,
+      "reengage_days": 90
+    },
+    "engaged_unbooked": {
+      "cohort": "prospect",
+      "warmth": "cold",
+      "touches": 1,
+      "reengage_days": 90
+    },
+    "no_show_rebook": {
+      "cohort": "prospect",
+      "warmth": "cold",
+      "touches": 1,
+      "reengage_days": 90
+    },
+    "expired_trial": {
+      "cohort": "prospect",
+      "warmth": "product_aware",
+      "touches": 2,
+      "reengage_days": 90
+    },
+    "trial_no_convert": {
+      "cohort": "prospect",
+      "warmth": "product_aware",
+      "touches": 2,
+      "reengage_days": 90
+    }
+  },
+  "rules": {
+    "touches_min": 1,
+    "touches_are_a_ceiling_not_a_quota": true,
+    "reengage_is_a_separate_cycle": "A reengage_days value is not an extra email_sequence step with a large wait_days. It is its own cycle after the sequence stops.",
+    "involuntary_piles_do_not_reengage": "An involuntary lapse resolves or it does not. There is no quarterly win-back loop for a failed card."
+  }
+}

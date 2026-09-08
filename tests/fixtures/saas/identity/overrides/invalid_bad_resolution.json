@@ -1,0 +1,13 @@
+{
+  "schema_version": "identity-override.v1",
+  "target_cluster_hash": "1ea37101ec5f741d8ca23a9e7c8e36ce1a6bd2c041b1a1fc093938de773b0f04",
+  "member_node_ids": [
+    "hubspot:contact:role_a",
+    "hubspot:contact:role_b",
+    "stripe:customer:role_c"
+  ],
+  "resolution": "split_members",
+  "decided_by": "fixture.operator",
+  "decided_at": "2026-07-29T19:00:00.000Z",
+  "integrity": "37dfaed1851e757ed7faf16310aee61b399836d1e80233e97e7a9556cefa6037"
+}

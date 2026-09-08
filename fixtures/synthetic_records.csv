@@ -1,0 +1,8 @@
+source_id,record_type,lifecycle,status,created_at,last_activity_at,value,consent,email_opt_out,invalid_address,do_not_contact,open_deal,active_subscription,next_activity_at,duplicate_key
+demo-stale-1,contact,lead,,2025-01-01,2026-01-01,1000,express,false,false,false,false,false,,lead-one
+demo-trial-1,deal,trial,trial ended,2026-01-01,2026-06-01,500,express,false,false,false,false,false,,trial-one
+demo-lost-1,deal,opportunity,closed lost,2025-06-01,2026-02-01,1500,express,false,false,false,false,false,,lost-one
+demo-lapsed-1,contact,customer,,2025-01-01,2026-01-01,750,express,false,false,false,false,false,,customer-one
+demo-optout-1,contact,lead,,2025-01-01,2025-01-01,1000,express,true,false,true,false,false,,optout-one
+demo-review-1,contact,lead,,2025-01-01,2025-01-01,1000,unknown,false,false,false,false,false,,review-one
+demo-duplicate-1,contact,lead,,2025-01-01,2025-01-01,1000,express,false,false,false,false,false,,lead-one

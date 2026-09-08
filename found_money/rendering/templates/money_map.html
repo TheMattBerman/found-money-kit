@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Money Map — {{ run_id }}</title>
+  <style>
+    :root {
+      --bg: #07080a;
+      --surface: #0c1013;
+      --surface-2: #0f1418;
+      --line: #1b2329;
+      --line-strong: #29333b;
+      --ink: #f0f1eb;
+      --muted: #aeb6bd;
+      --dim: #7d8790;
+      --green: #3aff9a;
+      --green-dim: #0d7d48;
+      --green-soft: rgba(58, 255, 154, .08);
+      --amber: #ffd45a;
+      --amber-soft: rgba(255, 212, 90, .08);
+      --sans: "Avenir Next", "Helvetica Neue", system-ui, -apple-system, sans-serif;
+      --mono: "SFMono-Regular", "Cascadia Code", "Roboto Mono", ui-monospace, Menlo, Consolas, monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { background: #000; scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 0;
+      background:
+        radial-gradient(ellipse 960px 620px at 8% -8%, rgba(58, 255, 154, .07), transparent 62%),
+        radial-gradient(ellipse 780px 500px at 110% 8%, rgba(255, 212, 90, .035), transparent 65%),
+        var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      overflow-wrap: anywhere;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .8;
+      background-image:
+        linear-gradient(rgba(255,255,255,.014) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.014) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(to bottom, black, transparent 88%);
+    }
+    a { color: inherit; }
+    a:focus-visible, summary:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }
+    main { position: relative; z-index: 1; max-width: 1280px; margin: 0 auto; padding: 34px 4vw 80px; }
+
+    .topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--line);
+      color: var(--dim);
+      font: 12px/1.4 var(--mono);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .brand { color: var(--ink); font-weight: 700; letter-spacing: .2em; }
+    .brand span { color: var(--dim); font-weight: 400; }
+    .topline-meta { display: flex; align-items: center; gap: 22px; text-align: right; }
+    .live { color: var(--green); }
+    .live::before { content: ""; display: inline-block; width: 6px; height: 6px; margin: 0 8px 1px 0; border-radius: 50%; background: var(--green); box-shadow: 0 0 12px var(--green); }
+
+    .hero { padding: 68px 0 42px; border-bottom: 1px solid var(--line); }
+    .eyebrow, .section-kicker, .label {
+      color: var(--green);
+      font: 12px/1.4 var(--mono);
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+    .hero-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(99.9%, 260px), 1fr)); gap: 48px; align-items: end; }
+    h1 {
+      max-width: 18ch;
+      margin: 18px 0 0;
+      color: var(--ink);
+      font-size: clamp(52px, 6.5vw, 96px);
+      font-weight: 750;
+      letter-spacing: -.055em;
+      line-height: .94;
+    }
+    .hero-copy { max-width: 62ch; margin: 26px 0 0; color: var(--muted); font-size: 18px; line-height: 1.55; }
+    .hero-copy strong { color: var(--ink); font-weight: 600; }
+    .run-card { border: 1px solid var(--line-strong); background: rgba(0,0,0,.24); padding: 20px; }
+    .run-card .label { color: var(--dim); }
+    .run-card .state { margin-top: 12px; color: var(--green); font: 700 23px/1.05 var(--sans); letter-spacing: -.03em; }
+    .run-card .sub { margin-top: 12px; color: var(--muted); font: 12px/1.55 var(--mono); }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 38px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--dim); font: 12px/1.5 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .hero-meta strong { color: var(--ink); font-weight: 600; }
+
+    .stat-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); margin-top: 26px; border: 1px solid var(--line-strong); background: rgba(0,0,0,.26); }
+    .stat { min-height: 92px; padding: 18px 20px; border-right: 1px solid var(--line); }
+    .stat:last-child { border-right: 0; }
+    .stat-value { display: block; color: var(--green); font: 700 31px/.95 var(--sans); letter-spacing: -.045em; }
+    .stat-name { display: block; margin-top: 10px; color: var(--dim); font: 12px/1.35 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+
+    .thesis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(99.9%, 160px), 1fr)); gap: 34px; padding: 48px 0 54px; border-bottom: 1px solid var(--line); }
+    .thesis .label { padding-top: 7px; }
+    blockquote { margin: 0; max-width: 850px; padding-left: 24px; border-left: 2px solid var(--green); color: var(--ink); font-size: clamp(22px, 2.4vw, 34px); font-weight: 500; letter-spacing: -.025em; line-height: 1.25; }
+
+    .section { padding-top: 66px; }
+    .section-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 28px; }
+    .section-number { color: var(--dim); font: 12px/1 var(--mono); letter-spacing: .2em; }
+    h2 { margin: 0; color: var(--ink); font-size: 31px; font-weight: 700; letter-spacing: -.035em; line-height: 1.05; }
+    .section-rule { flex: 1; border-top: 1px solid var(--line); }
+    .section-intro { max-width: 70ch; margin: -8px 0 24px; color: var(--muted); font-size: 15px; line-height: 1.6; }
+
+    .overview-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(99.9%, 320px), 1fr)); gap: 16px; }
+    .panel { border: 1px solid var(--line); background: var(--surface); }
+    .panel-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 20px; border-bottom: 1px solid var(--line); color: var(--dim); font: 12px/1.3 var(--mono); letter-spacing: .16em; text-transform: uppercase; }
+    .panel-head strong { color: var(--ink); font-weight: 600; }
+    .opportunity-body { padding: 28px 26px 30px; }
+    .money-total { color: var(--green); font: 700 clamp(48px, 6vw, 82px)/.92 var(--sans); letter-spacing: -.065em; }
+    .money-note { max-width: 42ch; margin-top: 14px; color: var(--muted); font-size: 14px; line-height: 1.55; }
+    .money-lines { display: grid; gap: 0; margin-top: 30px; border-top: 1px solid var(--line); }
+    .money-line { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 15px 0; border-bottom: 1px solid var(--line); }
+    .money-line .currency { color: var(--dim); font: 12px/1.4 var(--mono); letter-spacing: .15em; text-transform: uppercase; }
+    .money-line .amount { color: var(--ink); font: 600 19px/1.2 var(--mono); }
+    .basis-body { padding: 22px 22px 25px; }
+    .basis-row { display: grid; grid-template-columns: 52px 1fr; gap: 14px; padding: 15px 0; border-bottom: 1px dashed var(--line); }
+    .basis-row:last-child { border-bottom: 0; }
+    .basis-number { color: var(--amber); font: 700 28px/1 var(--sans); letter-spacing: -.04em; }
+    .basis-name { color: var(--ink); font: 600 13px/1.3 var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+    .basis-detail { margin-top: 5px; color: var(--muted); font-size: 12px; line-height: 1.45; }
+
+    .pile-list { display: grid; gap: 16px; }
+    .pile { border: 1px solid var(--line); background: var(--surface); }
+    .pile.primary { border-color: var(--green-dim); box-shadow: 0 0 0 1px rgba(58,255,154,.18), 0 16px 50px rgba(58,255,154,.04); }
+    .pile-top { display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-start; padding: 24px 24px 20px; border-bottom: 1px solid var(--line); }
+    .pile-top > div:nth-child(2) { flex: 1 1 240px; min-width: 0; }
+    .pile-top > .status { margin-left: auto; }
+    .pile-rank { color: var(--green); font: 700 44px/.88 var(--sans); letter-spacing: -.07em; }
+    .pile.primary .pile-rank { text-shadow: 0 0 22px rgba(58,255,154,.3); }
+    .pile-id { color: var(--dim); font: 12px/1.4 var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+    .pile-anchor { display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; margin-left: -5px; margin-right: 3px; color: var(--green); text-decoration: none; }
+    .pile-anchor:hover, .pile-anchor:focus-visible { color: var(--ink); }
+    h3 { margin: 7px 0 0; color: var(--ink); font-size: 24px; font-weight: 700; letter-spacing: -.025em; line-height: 1.1; }
+    .status { white-space: nowrap; padding: 7px 10px; border: 1px solid var(--line-strong); color: var(--muted); font: 12px/1.2 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .status.available { border-color: var(--green-dim); color: var(--green); background: #0b281c; }
+    .status.deferred { border-color: rgba(255,212,90,.35); color: var(--amber); background: #2a2412; }
+    .pile-body { display: flex; flex-wrap: wrap; gap: 30px; padding: 22px 24px 24px; }
+    .pile-why { flex: 1 1 420px; min-width: min(99.9%, 220px); color: var(--ink); font-size: 16px; line-height: 1.55; }
+    .pile-why::before { content: "WHY IT IS RECOVERABLE"; display: block; margin-bottom: 10px; color: var(--green); font: 12px/1.4 var(--mono); letter-spacing: .18em; }
+    .pile-meta { flex: 1 1 220px; min-width: min(99.9%, 220px); display: grid; gap: 0; align-content: start; }
+    .meta-item { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--line); color: var(--dim); font: 12px/1.35 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+    .meta-item strong { color: var(--ink); font-weight: 600; text-align: right; }
+    .pile-value { color: var(--green); font: 600 17px/1.2 var(--mono); }
+    .pile-actions { flex: 1 1 99.9%; display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-top: 4px; padding-top: 18px; border-top: 1px solid var(--line); }
+    .next-action { color: var(--muted); font: 12px/1.5 var(--mono); }
+    .next-action strong { color: var(--ink); }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 16px; border: 1px solid var(--green); background: var(--green); color: #06140d; font: 700 12px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; text-decoration: none; }
+    .button:hover { box-shadow: 0 0 24px rgba(58,255,154,.26); }
+    .button.secondary { border-color: var(--line-strong); background: transparent; color: var(--green); }
+    details { flex: 1 1 99.9%; margin-top: 2px; }
+    summary { cursor: pointer; color: var(--green); font: 12px/1.4 var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+    .factor-list { display: grid; gap: 10px; margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--line); }
+    .factor { display: grid; grid-template-columns: minmax(0, 140px) minmax(0, 1fr); gap: 14px; min-width: 0; color: var(--muted); font-size: 12px; line-height: 1.45; overflow-wrap: anywhere; }
+    .factor .factor-name { color: var(--dim); font: 12px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+
+    .control { display: flex; flex-wrap: wrap; gap: 28px; border: 1px solid var(--line-strong); background: linear-gradient(145deg, var(--green-soft), rgba(0,0,0,.2) 62%); padding: 28px; }
+    .control > div:first-child { flex: 1 1 420px; min-width: min(99.9%, 240px); }
+    .control h3 { font-size: 29px; max-width: 18ch; }
+    .control-copy { margin-top: 13px; color: var(--muted); font-size: 14px; line-height: 1.6; }
+    .control-side { flex: 1 1 240px; min-width: min(99.9%, 220px); padding-left: 24px; border-left: 1px solid var(--line-strong); }
+    .control-side .label { color: var(--dim); }
+    .control-side .decision { margin-top: 12px; color: var(--ink); font: 600 17px/1.35 var(--sans); }
+    .control-side .boundary { margin-top: 13px; color: var(--green); font: 12px/1.55 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; margin-top: 68px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--dim); font: 12px/1.5 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    .footer strong { color: var(--green); font-weight: 600; }
+
+  </style>
+</head>
+<body>
+  <main id="money-map" data-room="find" aria-labelledby="money-map-title">
+    <nav class="topline" aria-label="Recovery Room context">
+      <div class="brand">FOUND MONEY <span>/ RECOVERY ROOM</span></div>
+      <div class="topline-meta">
+        <span class="live">OFFLINE PROOF</span>
+        <span>RUN {{ run_id }}</span>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">01 / THE FIND · EVIDENCE FIRST</div>
+          <h1 id="money-map-title">Find what is already recoverable.</h1>
+          <p class="hero-copy">A reviewable map of the opportunity, the evidence behind it, and the next human decision. <strong>Every number stays attached to its basis.</strong></p>
+        </div>
+        <aside class="run-card" aria-label="Strategy status">
+          <div class="label">Strategy stage</div>
+          <div class="state" data-strategy-stage="{{ strategy_stage }}">{{ strategy_stage|replace("_", " ")|title }}</div>
+          <div class="sub">No automatic outreach<br>Human review remains in control</div>
+        </aside>
+      </div>
+      <div class="hero-meta">
+        <span>Schema <strong>money-map.v1</strong></span>
+        <span>Opportunity <strong>{{ identified_opportunity|length }} currency bucket{% if identified_opportunity|length != 1 %}s{% endif %}</strong></span>
+        <span>Plays ready <strong>{{ recommended_play_ids|length }}</strong></span>
+      </div>
+    </header>
+
+    <section class="stat-strip" aria-label="Money Map summary">
+      <div class="stat">
+        <span class="stat-value">{{ piles|length }}</span>
+        <span class="stat-name">ranked pile{% if piles|length != 1 %}s{% endif %}</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">{{ recommended_play_ids|length }}</span>
+        <span class="stat-name">linked play{% if recommended_play_ids|length != 1 %}s{% endif %}</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">{{ data_gap_count }}</span>
+        <span class="stat-name">Data gaps and exclusions</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">{{ overlap_exclusion_count }}</span>
+        <span class="stat-name">overlap exclusion{% if overlap_exclusion_count != 1 %}s{% endif %}</span>
+      </div>
+    </section>
+
+    <section class="thesis" aria-labelledby="thesis-title">
+      <div class="label" id="thesis-title">Operating thesis</div>
+      <blockquote>Review the evidence. Rank the pile. Then choose the play that a human is willing to stand behind.</blockquote>
+    </section>
+
+    <section class="section" aria-labelledby="opportunity-title">
+      <div class="section-head">
+        <span class="section-number">02</span>
+        <h2 id="opportunity-title">What the map found</h2>
+        <span class="section-rule" aria-hidden="true"></span>
+      </div>
+      <p class="section-intro">The headline is an aggregate view. The basis below keeps observed, modeled, and unquantified evidence distinct.</p>
+      <div class="overview-grid">
+        <article class="panel" aria-labelledby="opportunity-panel-title">
+          <div class="panel-head"><strong id="opportunity-panel-title">Totals</strong><span>identified opportunity</span></div>
+          <div class="opportunity-body">
+            {% if identified_opportunity %}
+              {% for row in identified_opportunity %}
+              <div class="money-total" data-amount="{{ row.amount_minor }}">{{ row.amount_display }} <span style="font-size:.35em;letter-spacing:.08em;vertical-align:middle;">{{ row.currency|upper }}</span></div>
+              {% endfor %}
+              <p class="money-note">This is the selected opportunity for the current run. It is shown in minor units exactly as supplied by the source contract.</p>
+              <div class="money-lines">
+                {% for row in identified_opportunity %}
+                <div class="money-line"><span class="currency">{{ row.currency|upper }} / selected value</span><span class="amount">{{ row.amount_minor }}</span></div>
+                {% endfor %}
+              </div>
+            {% else %}
+              <p class="money-note">No identified opportunity.</p>
+            {% endif %}
+          </div>
+        </article>
+        <article class="panel" aria-labelledby="basis-panel-title">
+          <div class="panel-head"><strong id="basis-panel-title">Evidence basis</strong><span>event counts</span></div>
+          <div class="basis-body">
+            {% if basis_counts %}
+              {% for row in basis_counts %}
+              <div class="basis-row">
+                <div class="basis-number">{{ row.observed_event_count }}</div>
+                <div><div class="basis-name">{{ row.currency|upper }} observed</div><div class="basis-detail">{{ row.modeled_event_count }} modeled · {{ row.unquantified_event_count }} unquantified</div></div>
+              </div>
+              {% endfor %}
+            {% else %}
+              <p class="money-note">No basis counts.</p>
+            {% endif %}
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="piles-title">
+      <div class="section-head">
+        <span class="section-number">03</span>
+        <h2 id="piles-title">Ranked recovery piles</h2>
+        <span class="section-rule" aria-hidden="true"></span>
+      </div>
+      <p class="section-intro">The order is deterministic. Each pile carries its value basis, readiness, and navigation state so the next move is explicit.</p>
+      {% if piles %}
+      <div class="pile-list">
+        {% for pile in piles %}
+        <article class="pile{% if pile.rank == 1 %} primary{% endif %}" id="pile-{{ pile.rank }}" data-pile-id="{{ pile.pile_id }}" data-navigation-target="{{ pile.navigation_target_id }}">
+          <span id="{{ pile.navigation_target_id }}" class="anchor-target" aria-hidden="true"></span>
+          <div class="pile-top">
+            <div class="pile-rank">{{ "%02d"|format(pile.rank) }}</div>
+            <div>
+              <div class="pile-id"><a class="pile-anchor" href="#{{ pile.navigation_target_id }}" aria-label="Jump to {{ pile.pile_id|replace("_", " ") }}">#</a>{{ pile.pile_id|replace("_", " ") }} · {{ pile.currency|upper }}</div>
+              <h3>{{ pile.pile_id|replace("_", " ")|title }}</h3>
+            </div>
+            <div class="status {{ pile.navigation_state }}">{{ pile.navigation_state|replace("_", " ") }}</div>
+          </div>
+          <div class="pile-body">
+            <div class="pile-why">{{ pile.why_recoverable }}</div>
+            <div class="pile-meta">
+              <div class="meta-item"><span>selected value</span><strong class="pile-value" data-amount="{{ pile.selected_value_minor }}">{{ pile.amount_display }} {{ pile.currency|upper }}</strong></div>
+              <div class="meta-item"><span>value basis</span><strong>{{ pile.value_basis|replace("_", " ") }}</strong></div>
+              <div class="meta-item"><span>confidence</span><strong>{{ pile.confidence_class }}</strong></div>
+              <div class="meta-item"><span>sources</span><strong>{{ pile.source_count }}</strong></div>
+            </div>
+            <div class="pile-actions">
+              <div class="next-action"><strong>Next:</strong> {{ pile.navigation_next_action|replace("_", " ") }}</div>
+              {% if pile.navigation_state == "available" %}
+              <a class="button" data-play-id="{{ pile.navigation_play_id }}" href="top-play.html">Open linked play <span aria-hidden="true">→</span></a>
+              {% else %}
+              <span class="status deferred">Strategy review pending</span>
+              {% endif %}
+            </div>
+            {% if pile.rank_explanation %}
+            <details>
+              <summary>Rank explanation</summary>
+              <div class="factor-list">
+                <div class="factor"><span class="factor-name">total score</span><span>{{ pile.rank_explanation.total_score }} · tie-break {{ pile.rank_explanation.tie_break_key }}</span></div>
+                {% for factor in pile.rank_explanation.factors %}
+                <div class="factor"><span class="factor-name">{{ factor.name|replace("_", " ") }}</span><span>{{ factor.explanation }} · contribution {{ factor.contribution }} · {{ factor.source_count }} source{% if factor.source_count != 1 %}s{% endif %}</span></div>
+                {% endfor %}
+              </div>
+            </details>
+            {% endif %}
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="panel"><div class="opportunity-body"><p class="money-note">No piles.</p></div></div>
+      {% endif %}
+    </section>
+
+    <section class="section" aria-labelledby="control-title">
+      <div class="section-head">
+        <span class="section-number">04</span>
+        <h2 id="control-title">The human control</h2>
+        <span class="section-rule" aria-hidden="true"></span>
+      </div>
+      <div class="control">
+        <div>
+          <div class="eyebrow">Next move</div>
+          <h3>{{ next_action|replace("_", " ")|title }}</h3>
+          <p class="control-copy">This packet stops at a reviewable decision. No message is sent, no record is written, and no missing business input is filled in.</p>
+        </div>
+        <div class="control-side">
+          <div class="label">Run readiness</div>
+          <div class="decision">{{ data_gap_count }} data gap{% if data_gap_count != 1 %}s{% endif %} · {{ overlap_exclusion_count }} overlap exclusion{% if overlap_exclusion_count != 1 %}s{% endif %}{% if named_data_gaps %} · named gaps {{ named_data_gaps|join(", ") }}{% endif %}{% if event_exclusions_by_reason %} · event exclusions {% for reason, count in event_exclusions_by_reason.items()|sort %}{{ reason }} {{ count }}{% if not loop.last %}; {% endif %}{% endfor %}{% endif %}</div>
+          <div class="boundary">Review before any activation</div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>Found Money Kit · <strong>offline / public-safe</strong></span>
+      <span>Run {{ run_id }} · map v1</span>
+    </footer>
+  </main>
+</body>
+</html>

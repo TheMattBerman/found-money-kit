@@ -1,0 +1,26 @@
+{
+  "schema": "saas-map-fixture.v1",
+  "run_id": "run_zero_value",
+  "contributions": [
+    {
+      "economic_unit_key": "stripe_invoice:inv_zero",
+      "pile_id": "payment_rescue",
+      "value_basis": "observed_face_value",
+      "currency": "usd",
+      "amount_minor": "0",
+      "customer_token": "cust_zero",
+      "candidate_economic_unit_key": "stripe_invoice:inv_zero"
+    }
+  ],
+  "candidates": [
+    {
+      "run_id": "run_zero_value",
+      "event_family": "failed_payment",
+      "confidence_class": "observed",
+      "economic_unit_key": "stripe_invoice:inv_zero",
+      "customer_token": "cust_zero",
+      "lineage": {"invoice_node_id": "stripe:invoice:inv_zero"},
+      "qualifying_evidence": {"status": "open", "collection_outcome": "payment_failed"}
+    }
+  ]
+}

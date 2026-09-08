@@ -1,0 +1,43 @@
+{
+  "case": "non_unique_phone_three_parties",
+  "expect_merge": false,
+  "match_rule": null,
+  "nodes": [
+    {
+      "node_id": "hubspot:contact:shared_phone_a",
+      "source_system": "hubspot",
+      "object_type": "contact",
+      "source_id": "shared_phone_a",
+      "observed_at": "2026-07-01T12:00:00.000Z",
+      "payload_hash": "8888888888888888888888888888888888888888888888888888888888888888",
+      "email": null,
+      "phone": "+15550100001",
+      "external_ids": {},
+      "display_name": "Phone A"
+    },
+    {
+      "node_id": "hubspot:contact:shared_phone_b",
+      "source_system": "hubspot",
+      "object_type": "contact",
+      "source_id": "shared_phone_b",
+      "observed_at": "2026-07-01T12:01:00.000Z",
+      "payload_hash": "9999999999999999999999999999999999999999999999999999999999999999",
+      "email": null,
+      "phone": "+15550100001",
+      "external_ids": {},
+      "display_name": "Phone B"
+    },
+    {
+      "node_id": "stripe:customer:shared_phone_c",
+      "source_system": "stripe",
+      "object_type": "customer",
+      "source_id": "shared_phone_c",
+      "observed_at": "2026-07-01T12:02:00.000Z",
+      "payload_hash": "abababababababababababababababababababababababababababababababab",
+      "email": null,
+      "phone": "+15550100001",
+      "external_ids": {},
+      "display_name": "Phone C"
+    }
+  ]
+}

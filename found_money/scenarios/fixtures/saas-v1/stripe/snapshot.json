@@ -1,0 +1,66 @@
+{
+  "schema": "stripe-snapshot.v1",
+  "source": "stripe",
+  "customers": [
+    {
+      "id": "cus_saas_fp_001",
+      "synthetic_customer_key": "syn_saas_fp",
+      "status": "active"
+    },
+    {
+      "id": "cus_saas_et_001",
+      "synthetic_customer_key": "syn_saas_et"
+    },
+    {
+      "id": "cus_saas_cc_001",
+      "synthetic_customer_key": "syn_saas_cc",
+      "status": "canceled",
+      "canceled_at": "2026-04-15T00:00:00Z",
+      "amount_minor": 800,
+      "currency": "usd"
+    },
+    {
+      "id": "cus_saas_cl_001",
+      "synthetic_customer_key": "syn_saas_cl",
+      "status": "active"
+    },
+    {
+      "id": "cus_saas_ru_001",
+      "synthetic_customer_key": "syn_saas_ru",
+      "status": "active"
+    }
+  ],
+  "subscriptions": [
+    {
+      "id": "sub_saas_et_001",
+      "customer_id": "cus_saas_et_001",
+      "synthetic_customer_key": "syn_saas_et",
+      "status": "trialing",
+      "trial_end": "2026-05-01T00:00:00Z",
+      "converted": false,
+      "amount_minor": 1200,
+      "currency": "usd"
+    },
+    {
+      "id": "sub_saas_ru_001",
+      "customer_id": "cus_saas_ru_001",
+      "synthetic_customer_key": "syn_saas_ru",
+      "status": "active",
+      "renewal_at": "2026-08-15T00:00:00Z",
+      "amount_minor": 3500,
+      "currency": "usd"
+    }
+  ],
+  "invoices": [
+    {
+      "id": "in_saas_fp_001",
+      "customer_id": "cus_saas_fp_001",
+      "synthetic_customer_key": "syn_saas_fp",
+      "status": "open",
+      "collection_outcome": "payment_failed",
+      "amount_due_cents": 4900,
+      "currency": "usd",
+      "attempted_at": "2026-06-01T10:00:00Z"
+    }
+  ]
+}

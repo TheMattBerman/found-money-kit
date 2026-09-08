@@ -1,0 +1,10 @@
+{
+  "schema_version": "found-money-build-source.v1",
+  "mode": "fixture",
+  "fixture": "synthetic-saas-thin-slice",
+  "credentials": {
+    "credential_mode": "none",
+    "runtime_mode": "test",
+    "scopes": []
+  }
+}

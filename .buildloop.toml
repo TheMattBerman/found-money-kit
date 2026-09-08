@@ -1,0 +1,7 @@
+[checks]
+required = [
+  "quality",
+  "unit-and-contract",
+  "public-safety",
+  "render-proof",
+]

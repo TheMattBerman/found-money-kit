@@ -1,0 +1,17 @@
+{
+  "schema_version": "found-money-private-run-config.v1",
+  "scope": {
+    "mode": "fixture",
+    "systems": ["hubspot", "stripe"],
+    "fixture": "synthetic-saas-v1",
+    "runtime_mode": "test",
+    "authorization": "not-authorized"
+  },
+  "credentials": {
+    "source": "environment",
+    "bindings": {
+      "hubspot": "HUBSPOT_PRIVATE_APP_TOKEN",
+      "stripe": "STRIPE_API_KEY"
+    }
+  }
+}

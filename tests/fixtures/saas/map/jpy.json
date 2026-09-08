@@ -1,0 +1,26 @@
+{
+  "schema": "saas-map-fixture.v1",
+  "run_id": "run_jpy",
+  "contributions": [
+    {
+      "economic_unit_key": "stripe_invoice:inv_jpy",
+      "pile_id": "payment_rescue",
+      "value_basis": "observed_face_value",
+      "currency": "jpy",
+      "amount_minor": "1234",
+      "customer_token": "cust_jpy",
+      "candidate_economic_unit_key": "stripe_invoice:inv_jpy"
+    }
+  ],
+  "candidates": [
+    {
+      "run_id": "run_jpy",
+      "event_family": "failed_payment",
+      "confidence_class": "observed",
+      "economic_unit_key": "stripe_invoice:inv_jpy",
+      "customer_token": "cust_jpy",
+      "lineage": {"invoice_node_id": "stripe:invoice:inv_jpy"},
+      "qualifying_evidence": {"status": "open", "collection_outcome": "payment_failed"}
+    }
+  ]
+}

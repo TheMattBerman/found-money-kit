@@ -1,0 +1,80 @@
+{
+  "schema": "saas-map-fixture.v1",
+  "run_id": "run_mixed_currency",
+  "contributions": [
+    {
+      "economic_unit_key": "stripe_invoice:inv_usd",
+      "pile_id": "payment_rescue",
+      "value_basis": "observed_face_value",
+      "currency": "usd",
+      "amount_minor": "1234",
+      "customer_token": "cust_a",
+      "candidate_economic_unit_key": "stripe_invoice:inv_usd"
+    },
+    {
+      "economic_unit_key": "stripe_invoice:inv_eur",
+      "pile_id": "payment_rescue",
+      "value_basis": "observed_face_value",
+      "currency": "eur",
+      "amount_minor": "2000",
+      "customer_token": "cust_b",
+      "candidate_economic_unit_key": "stripe_invoice:inv_eur"
+    },
+    {
+      "economic_unit_key": "stripe_invoice:inv_jpy",
+      "pile_id": "payment_rescue",
+      "value_basis": "observed_face_value",
+      "currency": "jpy",
+      "amount_minor": "1234",
+      "customer_token": "cust_c",
+      "candidate_economic_unit_key": "stripe_invoice:inv_jpy"
+    },
+    {
+      "economic_unit_key": "stripe_invoice:inv_kwd",
+      "pile_id": "payment_rescue",
+      "value_basis": "observed_face_value",
+      "currency": "kwd",
+      "amount_minor": "1234",
+      "customer_token": "cust_d",
+      "candidate_economic_unit_key": "stripe_invoice:inv_kwd"
+    }
+  ],
+  "candidates": [
+    {
+      "run_id": "run_mixed_currency",
+      "event_family": "failed_payment",
+      "confidence_class": "observed",
+      "economic_unit_key": "stripe_invoice:inv_usd",
+      "customer_token": "cust_a",
+      "lineage": {"invoice_node_id": "stripe:invoice:inv_usd"},
+      "qualifying_evidence": {"status": "open", "collection_outcome": "payment_failed"}
+    },
+    {
+      "run_id": "run_mixed_currency",
+      "event_family": "failed_payment",
+      "confidence_class": "observed",
+      "economic_unit_key": "stripe_invoice:inv_eur",
+      "customer_token": "cust_b",
+      "lineage": {"invoice_node_id": "stripe:invoice:inv_eur"},
+      "qualifying_evidence": {"status": "open", "collection_outcome": "payment_failed"}
+    },
+    {
+      "run_id": "run_mixed_currency",
+      "event_family": "failed_payment",
+      "confidence_class": "observed",
+      "economic_unit_key": "stripe_invoice:inv_jpy",
+      "customer_token": "cust_c",
+      "lineage": {"invoice_node_id": "stripe:invoice:inv_jpy"},
+      "qualifying_evidence": {"status": "open", "collection_outcome": "payment_failed"}
+    },
+    {
+      "run_id": "run_mixed_currency",
+      "event_family": "failed_payment",
+      "confidence_class": "observed",
+      "economic_unit_key": "stripe_invoice:inv_kwd",
+      "customer_token": "cust_d",
+      "lineage": {"invoice_node_id": "stripe:invoice:inv_kwd"},
+      "qualifying_evidence": {"status": "open", "collection_outcome": "payment_failed"}
+    }
+  ]
+}

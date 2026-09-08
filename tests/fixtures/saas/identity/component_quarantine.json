@@ -1,0 +1,83 @@
+{
+  "case": "component_quarantine",
+  "expect_merge": false,
+  "match_rule": null,
+  "nodes": [
+    {
+      "node_id": "hubspot:contact:component_email_a",
+      "source_system": "hubspot",
+      "object_type": "contact",
+      "source_id": "component_email_a",
+      "observed_at": "2026-07-01T12:00:00.000Z",
+      "payload_hash": "1111111111111111111111111111111111111111111111111111111111111111",
+      "email": "household.component@example.invalid",
+      "phone": null,
+      "external_ids": {
+        "found_money.synthetic_customer": "cust_component"
+      },
+      "display_name": "Component Email A"
+    },
+    {
+      "node_id": "stripe:customer:component_email_b",
+      "source_system": "stripe",
+      "object_type": "customer",
+      "source_id": "component_email_b",
+      "observed_at": "2026-07-01T12:01:00.000Z",
+      "payload_hash": "2222222222222222222222222222222222222222222222222222222222222222",
+      "email": "household.component@example.invalid",
+      "phone": null,
+      "external_ids": {},
+      "display_name": "Component Email B"
+    },
+    {
+      "node_id": "hubspot:contact:component_email_c",
+      "source_system": "hubspot",
+      "object_type": "contact",
+      "source_id": "component_email_c",
+      "observed_at": "2026-07-01T12:02:00.000Z",
+      "payload_hash": "3333333333333333333333333333333333333333333333333333333333333333",
+      "email": "household.component@example.invalid",
+      "phone": null,
+      "external_ids": {},
+      "display_name": "Component Email C"
+    },
+    {
+      "node_id": "stripe:customer:component_external_d",
+      "source_system": "stripe",
+      "object_type": "customer",
+      "source_id": "component_external_d",
+      "observed_at": "2026-07-01T12:03:00.000Z",
+      "payload_hash": "4444444444444444444444444444444444444444444444444444444444444444",
+      "email": null,
+      "phone": null,
+      "external_ids": {
+        "found_money.synthetic_customer": "cust_component"
+      },
+      "display_name": "Component External D"
+    },
+    {
+      "node_id": "hubspot:contact:component_same_source_e",
+      "source_system": "hubspot",
+      "object_type": "contact",
+      "source_id": "component_shared_source",
+      "observed_at": "2026-07-01T12:04:00.000Z",
+      "payload_hash": "5555555555555555555555555555555555555555555555555555555555555555",
+      "email": null,
+      "phone": null,
+      "external_ids": {},
+      "display_name": "Component Same Source E"
+    },
+    {
+      "node_id": "hubspot:contact:component_same_source_f",
+      "source_system": "hubspot",
+      "object_type": "contact",
+      "source_id": "component_shared_source",
+      "observed_at": "2026-07-01T12:05:00.000Z",
+      "payload_hash": "6666666666666666666666666666666666666666666666666666666666666666",
+      "email": "household.component@example.invalid",
+      "phone": null,
+      "external_ids": {},
+      "display_name": "Component Same Source F"
+    }
+  ]
+}

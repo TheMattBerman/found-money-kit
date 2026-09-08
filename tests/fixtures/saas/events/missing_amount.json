@@ -1,0 +1,23 @@
+{
+  "schema": "stripe-snapshot.v1",
+  "source": "stripe",
+  "customers": [
+    {
+      "id": "cus_neg_missing_001",
+      "synthetic_customer_key": "cust_neg_missing_001",
+      "status": "active"
+    }
+  ],
+  "invoices": [
+    {
+      "id": "inv_neg_missing_amount_001",
+      "customer_id": "cus_neg_missing_001",
+      "synthetic_customer_key": "cust_neg_missing_001",
+      "status": "open",
+      "collection_outcome": "payment_failed",
+      "currency": "usd",
+      "attempted_at": "2026-06-01T10:00:00Z",
+      "role": "missing_amount_negative"
+    }
+  ]
+}

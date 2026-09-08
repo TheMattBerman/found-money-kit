@@ -1,0 +1,49 @@
+{
+  "schema": "stripe-snapshot.v1",
+  "source": "stripe",
+  "customers": [
+    {
+      "id": "st_ext_right",
+      "synthetic_customer_key": "cust_matrix_ext",
+      "display_name": "External Right",
+      "created": "2026-07-01T12:11:00Z"
+    },
+    {
+      "id": "st_email_right",
+      "email": "synth.join@example.invalid",
+      "display_name": "Email Right",
+      "created": "2026-07-01T12:16:00Z"
+    },
+    {
+      "id": "st_phone_right",
+      "phone": "+15550102201",
+      "display_name": "Phone Right",
+      "created": "2026-07-01T12:21:00Z"
+    },
+    {
+      "id": "st_name_right",
+      "display_name": "Identical Synth Name",
+      "created": "2026-07-01T12:26:00Z"
+    },
+    {
+      "id": "st_conflict_right",
+      "email": "shared.conflict@example.invalid",
+      "synthetic_customer_key": "cust_conflict_b",
+      "display_name": "Conflict Right",
+      "created": "2026-07-01T12:31:00Z"
+    },
+    {
+      "id": "st_household_c",
+      "email": "household.matrix@example.invalid",
+      "display_name": "Household C",
+      "created": "2026-07-01T12:37:00Z"
+    },
+    {
+      "id": "st_phone_recycle_c",
+      "phone": "+15550103301",
+      "display_name": "Recycle C",
+      "created": "2026-07-01T12:42:00Z"
+    }
+  ],
+  "invoices": []
+}

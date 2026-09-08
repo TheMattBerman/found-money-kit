@@ -1,0 +1,37 @@
+{
+  "schema_version": "recurring-valuation-policy.v1",
+  "business_models": [
+    "saas"
+  ],
+  "customer_lapse_families": [
+    "canceled_customer",
+    "disappeared_high_value_customer"
+  ],
+  "days_per_month": "30.4375",
+  "monthly_interval": "month",
+  "tenure_precision": "0.000001",
+  "description": "Use each lapsed customer's own monthly subscription amount times tenure. Prospect, invoice and transaction values remain sourced face values. Missing or ambiguous source values remain unquantified.",
+  "recorded_families": [
+    "closed_lost_stale_deal",
+    "silent_proposal"
+  ],
+  "authorable_families": [
+    "payment_rescue",
+    "canceled_customer",
+    "disappeared_high_value_customer"
+  ],
+  "operator_basis_wording": {
+    "modeled_opportunity": {
+      "observed face value": "modeled customer lifetime value",
+      "observed": "modeled"
+    },
+    "mixed": {
+      "observed face value": "mixed observed and modeled value",
+      "observed": "mixed"
+    }
+  },
+  "prospect_subscription_families": [
+    "expired_trial",
+    "trial_no_convert"
+  ]
+}

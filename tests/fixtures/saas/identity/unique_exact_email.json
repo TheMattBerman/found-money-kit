@@ -1,0 +1,31 @@
+{
+  "case": "unique_exact_email",
+  "expect_merge": true,
+  "match_rule": "unique_exact_email",
+  "nodes": [
+    {
+      "node_id": "hubspot:contact:email_left",
+      "source_system": "hubspot",
+      "object_type": "contact",
+      "source_id": "email_left",
+      "observed_at": "2026-07-01T12:00:00.000Z",
+      "payload_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "email": "  Synth.Join@Example.Invalid  ",
+      "phone": null,
+      "external_ids": {},
+      "display_name": "Email Left"
+    },
+    {
+      "node_id": "stripe:customer:email_right",
+      "source_system": "stripe",
+      "object_type": "customer",
+      "source_id": "email_right",
+      "observed_at": "2026-07-01T12:05:00.000Z",
+      "payload_hash": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "email": "synth.join@example.invalid",
+      "phone": null,
+      "external_ids": {},
+      "display_name": "Email Right"
+    }
+  ]
+}

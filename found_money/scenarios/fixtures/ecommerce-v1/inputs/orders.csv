@@ -1,0 +1,10 @@
+order_id,customer_id,ordered_at,currency,total_minor
+ord_ecom_lapse_1,ord_cust_lapse_001,2025-11-15T12:00:00.000Z,usd,4200
+ord_ecom_lapse_2,ord_cust_lapse_001,2026-03-15T12:00:00.000Z,usd,4200
+ord_ecom_re_1,ord_cust_reorder_001,2026-02-01T12:00:00.000Z,usd,6400
+ord_ecom_re_2,ord_cust_reorder_001,2026-05-20T12:00:00.000Z,usd,6400
+ord_ecom_vip_1,ord_cust_vip_001,2025-10-01T12:00:00.000Z,usd,18500
+ord_ecom_vip_2,ord_cust_vip_001,2026-03-01T12:00:00.000Z,usd,18500
+ord_ecom_refund_1,ord_cust_refund_001,2026-07-20T12:00:00.000Z,usd,1500
+ord_ecom_mix_1,ord_cust_mix_001,2026-01-15T12:00:00.000Z,usd,3300
+ord_ecom_mix_2,ord_cust_mix_001,2026-05-15T12:00:00.000Z,cad,3300

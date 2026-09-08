@@ -1,0 +1,1 @@
+{"results":[{"id":"contact-inline","properties":{"email":"inline@example.invalid","lifecyclestage":"lead"}},{"id":"contact-fallback","properties":{"email":"fallback@example.invalid","phone":null}}],"paging":{"next":{"after":"contacts-2"}}}

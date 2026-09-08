@@ -1,0 +1,31 @@
+{
+  "case": "unique_exact_e164_phone",
+  "expect_merge": true,
+  "match_rule": "unique_exact_e164_phone",
+  "nodes": [
+    {
+      "node_id": "hubspot:contact:phone_left",
+      "source_system": "hubspot",
+      "object_type": "contact",
+      "source_id": "phone_left",
+      "observed_at": "2026-07-01T12:00:00.000Z",
+      "payload_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "email": null,
+      "phone": " +1 (555) 010-2201 ",
+      "external_ids": {},
+      "display_name": "Phone Left"
+    },
+    {
+      "node_id": "stripe:customer:phone_right",
+      "source_system": "stripe",
+      "object_type": "customer",
+      "source_id": "phone_right",
+      "observed_at": "2026-07-01T12:05:00.000Z",
+      "payload_hash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "email": null,
+      "phone": "+15550102201",
+      "external_ids": {},
+      "display_name": "Phone Right"
+    }
+  ]
+}

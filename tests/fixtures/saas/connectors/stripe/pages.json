@@ -1,0 +1,14 @@
+{
+  "customers": [[{"id":"cus_fixture_alpha"}],[{"id":"cus_fixture_beta"}]],
+  "subscriptions": [[{"id":"sub_fixture_cancelled","customer":"cus_fixture_alpha","status":"canceled"}],[{"id":"sub_fixture_active","customer":"cus_fixture_beta","status":"active"}]],
+  "invoices": [[{"id":"in_fixture_failed_paid","customer":"cus_fixture_alpha","subscription":"sub_fixture_cancelled","status":"paid","prior_status":"open","collection_outcome":"payment_succeeded","status_history":[{"status":"open","collection_outcome":"payment_failed"},{"status":"paid","collection_outcome":"payment_succeeded"}],"attempt_count":2}],[{"id":"in_fixture_second","customer":"cus_fixture_beta","subscription":"sub_fixture_active","status":"open"}]],
+  "payment_intents": [[{"id":"pi_fixture_failed_paid","customer":"cus_fixture_alpha","invoice":"in_fixture_failed_paid","status":"succeeded"}],[{"id":"pi_fixture_second","customer":"cus_fixture_beta","invoice":"in_fixture_second","status":"requires_payment_method"}]],
+  "charges": [[{"id":"ch_fixture_legacy","customer":"cus_fixture_alpha","payment_intent":"pi_fixture_failed_paid"}],[{"id":"ch_fixture_second","customer":"cus_fixture_beta","payment_intent":"pi_fixture_second"}]],
+  "refunds": [[{"id":"re_fixture_partial","charge":"ch_fixture_legacy","amount":300,"status":"succeeded"}],[{"id":"re_fixture_second","charge":"ch_fixture_second","amount":100,"status":"pending"}]],
+  "products": [[{"id":"prod_fixture_legacy"}],[{"id":"prod_fixture_current"}]],
+  "prices": [[{"id":"price_fixture_legacy","product":"prod_fixture_legacy"}],[{"id":"price_fixture_current","product":"prod_fixture_current"}]],
+  "invoice_lines": {
+    "in_fixture_failed_paid": [[{"id":"il_fixture_one","invoice":"in_fixture_failed_paid","price":"price_fixture_legacy"}],[{"id":"il_fixture_overflow","invoice":"in_fixture_failed_paid","price":"price_fixture_legacy"}]],
+    "in_fixture_second": [[{"id":"il_fixture_second","invoice":"in_fixture_second","price":"price_fixture_current"}],[{"id":"il_fixture_second_overflow","invoice":"in_fixture_second","price":"price_fixture_current"}]]
+  }
+}

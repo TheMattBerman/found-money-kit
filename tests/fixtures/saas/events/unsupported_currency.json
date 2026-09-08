@@ -1,0 +1,24 @@
+{
+  "schema": "stripe-snapshot.v1",
+  "source": "stripe",
+  "customers": [
+    {
+      "id": "cus_neg_currency_001",
+      "synthetic_customer_key": "cust_neg_currency_001",
+      "status": "active"
+    }
+  ],
+  "invoices": [
+    {
+      "id": "inv_neg_bad_currency_001",
+      "customer_id": "cus_neg_currency_001",
+      "synthetic_customer_key": "cust_neg_currency_001",
+      "status": "open",
+      "collection_outcome": "payment_failed",
+      "amount_due_cents": 500,
+      "currency": "zzz",
+      "attempted_at": "2026-06-01T10:00:00Z",
+      "role": "unsupported_currency_negative"
+    }
+  ]
+}

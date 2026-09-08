@@ -1,0 +1,86 @@
+{
+  "schema_version": "profile-intake.v1",
+  "source": "Found Money recovery operating rules",
+  "questions": [
+    {
+      "id": "product",
+      "prompt": "What does the business sell, in one sentence?",
+      "type": "text",
+      "required": true,
+      "feeds": "product"
+    },
+    {
+      "id": "proof",
+      "prompt": "What proof do you have that you got results for people like them? Name the strongest one.",
+      "type": "text",
+      "required": true,
+      "feeds": "proof"
+    },
+    {
+      "id": "margin_percent",
+      "prompt": "What is your contribution margin as a percent? Give your best honest number.",
+      "type": "percent",
+      "required": true,
+      "feeds": "margin_percent"
+    },
+    {
+      "id": "capacity",
+      "prompt": "How many recovery reviews can you actually handle per week?",
+      "type": "integer",
+      "required": true,
+      "minimum": 1,
+      "feeds": "capacity"
+    },
+    {
+      "id": "destination",
+      "prompt": "Where do you want people to end up: a booking page, a billing portal, a reorder page, or something else?",
+      "type": "text",
+      "required": true,
+      "feeds": "destination"
+    },
+    {
+      "id": "business_model",
+      "prompt": "What kind of business is this: recurring (saas or membership), one-time product (ecommerce), or booked service?",
+      "type": "enum",
+      "options": [
+        "saas",
+        "ecommerce",
+        "service"
+      ],
+      "required": true,
+      "feeds": "business_model"
+    },
+    {
+      "id": "tenure_multiple_months",
+      "prompt": "For customers who left, how many months did a typical customer stay? This is the tenure multiple used to size what each lost customer is worth.",
+      "type": "number",
+      "required": true,
+      "minimum": 0.5,
+      "feeds": "tenure_multiple_months"
+    },
+    {
+      "id": "ltv_override_minor",
+      "prompt": "Optional: hard-set a lifetime value per customer in dollars. Leave blank to let the tenure multiple do the work.",
+      "type": "money_minor",
+      "required": false,
+      "feeds": "ltv_override_minor"
+    }
+  ],
+  "boundary_confirmations": [
+    {
+      "id": "read_only_inputs",
+      "prompt": "Confirm inputs stay read-only: no sending, no scheduling, no CRM or payment writes, no audience creation.",
+      "required": true
+    },
+    {
+      "id": "no_send_path",
+      "prompt": "Confirm nothing in this run sends anything. You hit send yourself, from your own tools.",
+      "required": true
+    },
+    {
+      "id": "human_authorizes_live",
+      "prompt": "Confirm a live HubSpot or Stripe read happens only if you explicitly authorize it and supply credentials in the environment.",
+      "required": true
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": "found-money-ecommerce-scenario-registry.v1",
+  "variants": {
+    "synthetic-ecommerce-v1": {
+      "cart": "optional/high-value-cart.json",
+      "definition": "definition.json",
+      "high_value_cart_state": "supplied",
+      "source_config": "source-config.json"
+    },
+    "synthetic-ecommerce-v1-cart-omitted": {
+      "cart": null,
+      "definition": "definition-cart-omitted.json",
+      "high_value_cart_state": "omitted",
+      "source_config": "source-config-cart-omitted.json"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "appointments": [
+    {
+      "appointment_id": "apt_svc_ns_001",
+      "customer_id": "apt_cust_ns_001",
+      "scheduled_at": "2026-06-15T14:00:00.000Z",
+      "status": "no_show"
+    },
+    {
+      "appointment_id": "apt_svc_tn_ns_001",
+      "customer_id": "apt_cust_tn_001",
+      "scheduled_at": "2026-05-10T14:00:00.000Z",
+      "status": "no_show"
+    },
+    {
+      "appointment_id": "apt_svc_tn_rb_001",
+      "customer_id": "apt_cust_tn_001",
+      "scheduled_at": "2026-06-20T14:00:00.000Z",
+      "status": "completed"
+    }
+  ]
+}

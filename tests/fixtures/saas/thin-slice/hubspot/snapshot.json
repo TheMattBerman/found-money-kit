@@ -1,0 +1,30 @@
+{
+  "schema": "hubspot-snapshot.v1",
+  "source": "hubspot",
+  "contacts": [
+    {
+      "id": "hs_contact_synth_001",
+      "properties": {
+        "lifecycle_stage": "customer",
+        "synthetic_customer_key": "cust_synth_001",
+        "last_activity_at": "2026-06-15T12:00:00Z",
+        "email_opt_out": false,
+        "invalid_address": false
+      }
+    }
+  ],
+  "deals": [
+    {
+      "id": "hs_deal_synth_001",
+      "properties": {
+        "deal_stage": "closed_lost",
+        "amount_observed": null,
+        "synthetic_customer_key": "cust_synth_001",
+        "closed_at": "2026-05-01T00:00:00Z"
+      }
+    }
+  ],
+  "associations": {
+    "hs_deal_synth_001": ["hs_contact_synth_001"]
+  }
+}

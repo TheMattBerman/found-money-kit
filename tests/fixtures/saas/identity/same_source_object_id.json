@@ -1,0 +1,31 @@
+{
+  "case": "same_source_object_id",
+  "expect_merge": true,
+  "match_rule": "same_source_object_id",
+  "nodes": [
+    {
+      "node_id": "node_a_same_source",
+      "source_system": "hubspot",
+      "object_type": "contact",
+      "source_id": "hs_shared_001",
+      "observed_at": "2026-07-01T12:00:00.000Z",
+      "payload_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "email": null,
+      "phone": null,
+      "external_ids": {},
+      "display_name": "Synth A"
+    },
+    {
+      "node_id": "node_b_same_source",
+      "source_system": "hubspot",
+      "object_type": "contact",
+      "source_id": "hs_shared_001",
+      "observed_at": "2026-07-01T12:05:00.000Z",
+      "payload_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "email": null,
+      "phone": null,
+      "external_ids": {},
+      "display_name": "Synth B"
+    }
+  ]
+}

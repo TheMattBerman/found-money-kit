@@ -1,0 +1,3 @@
+proposal_id,customer_id,proposed_at,status,amount_minor,currency
+proposal_001,customer_001,2026-07-29T18:45:30Z,sent,123,usd
+proposal_002,customer_002,2026-07-29T18:45:30,accepted,456,usd

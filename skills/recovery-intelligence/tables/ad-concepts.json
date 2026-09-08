@@ -1,0 +1,38 @@
+{
+  "source": "Found Money recovery operating rules",
+  "applies_to": "ConceptCardV1. These are ad concepts for a paid recovery play, not email or SMS creative.",
+  "warm_vs_cold": {
+    "setup": "Cut it. A past buyer needs no problem education and no brand introduction.",
+    "message_pivot": "From emotional agitation to value stacking, price anchors and risk reversal.",
+    "hook_type": "Direct retargeting hook that acknowledges the relationship, not a self-selection hook."
+  },
+  "formats": {
+    "founder_customer_call": {
+      "shape": "Split-screen video, founder calling a past customer to thank them.",
+      "proof_device": "A real peer raving, unscripted.",
+      "why": "Raw and native to feed; triggers nostalgia and social proof."
+    },
+    "apology_restock": {
+      "shape": "Text-heavy high-contrast static apologising for going out of stock.",
+      "proof_device": "Demand itself. Selling out repeatedly is the proof.",
+      "why": "Humility plus FOMO on a real restock.",
+      "requires": "a real stock or availability event",
+      "guard": "Must not be emitted without one. Fabricated scarcity violates the honest-urgency rule in round 1 Q9, and its discount is only valid because it is bound to a real event."
+    },
+    "variant_grid": {
+      "shape": "10 to 12 variants visible at once.",
+      "why": "Shifts the decision from yes-or-no to which-one.",
+      "fits": "catalogue businesses with real variants"
+    },
+    "founders_letter": {
+      "shape": "Text-only static that looks like a screenshot of a personal letter.",
+      "why": "Bypasses commercial defenses by not looking like an ad.",
+      "note": "Same principle as the plain-text first-touch email in the message rules."
+    },
+    "use_case_expansion": {
+      "shape": "The product in new relatable micro-moments.",
+      "why": "They churned from habit loss, not dislike. A fresh use case restarts the habit."
+    }
+  },
+  "kit_boundary": "The kit produces the concept only: tension, big idea, hook, opening visual, proof device, format, CTA, pile fit, production requirements. It does not produce creative assets."
+}

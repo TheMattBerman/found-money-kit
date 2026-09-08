@@ -1,0 +1,72 @@
+{
+  "schema": "hubspot-snapshot.v1",
+  "source": "hubspot",
+  "contacts": [
+    {
+      "id": "hs_shared_001",
+      "display_name": "Same Source A",
+      "last_activity_at": "2026-07-01T12:00:00Z"
+    },
+    {
+      "id": "hs_shared_001",
+      "display_name": "Same Source B",
+      "last_activity_at": "2026-07-01T12:05:00Z"
+    },
+    {
+      "id": "hs_ext_left",
+      "synthetic_customer_key": "cust_matrix_ext",
+      "display_name": "External Left",
+      "last_activity_at": "2026-07-01T12:10:00Z"
+    },
+    {
+      "id": "hs_email_left",
+      "email": "  Synth.Join@Example.Invalid  ",
+      "display_name": "Email Left",
+      "last_activity_at": "2026-07-01T12:15:00Z"
+    },
+    {
+      "id": "hs_phone_left",
+      "phone": " +1 (555) 010-2201 ",
+      "display_name": "Phone Left",
+      "last_activity_at": "2026-07-01T12:20:00Z"
+    },
+    {
+      "id": "hs_name_left",
+      "display_name": "Identical Synth Name",
+      "last_activity_at": "2026-07-01T12:25:00Z"
+    },
+    {
+      "id": "hs_conflict_left",
+      "email": "shared.conflict@example.invalid",
+      "synthetic_customer_key": "cust_conflict_a",
+      "display_name": "Conflict Left",
+      "last_activity_at": "2026-07-01T12:30:00Z"
+    },
+    {
+      "id": "hs_household_a",
+      "email": "household.matrix@example.invalid",
+      "display_name": "Household A",
+      "last_activity_at": "2026-07-01T12:35:00Z"
+    },
+    {
+      "id": "hs_household_b",
+      "email": "household.matrix@example.invalid",
+      "display_name": "Household B",
+      "last_activity_at": "2026-07-01T12:36:00Z"
+    },
+    {
+      "id": "hs_phone_recycle_a",
+      "phone": "+15550103301",
+      "display_name": "Recycle A",
+      "last_activity_at": "2026-07-01T12:40:00Z"
+    },
+    {
+      "id": "hs_phone_recycle_b",
+      "phone": "+15550103301",
+      "display_name": "Recycle B",
+      "last_activity_at": "2026-07-01T12:41:00Z"
+    }
+  ],
+  "deals": [],
+  "associations": {}
+}

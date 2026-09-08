@@ -1,0 +1,54 @@
+{
+  "source": "Found Money recovery operating rules",
+  "applies_to": "the first step of any customer-facing sequence",
+  "forbidden_substrings_case_insensitive": {
+    "openers": [
+      "hope you are doing well",
+      "hope you're doing well",
+      "hope this finds you well",
+      "hope this email finds you",
+      "it's been a while",
+      "its been a while",
+      "just checking in",
+      "just wanted to check in",
+      "as you may remember",
+      "as you might recall",
+      "i wanted to reach out",
+      "i'm reaching out"
+    ],
+    "reason": "Polite throat-clearing flags the message as an automated broadcast."
+  },
+  "forbidden_patterns": {
+    "url": "https?://|www\\.",
+    "markdown_link": "\\]\\(",
+    "reason": "A link in touch one tells the reader it is a broadcast. The destination belongs to a later step."
+  },
+  "forbidden_cta_shapes": {
+    "yes_oriented": [
+      "would you like to",
+      "are you free",
+      "can we schedule",
+      "book a time",
+      "grab 15 minutes"
+    ],
+    "reason": "A yes-oriented ask triggers the commitment trap. Design for a safe no."
+  },
+  "required": {
+    "ask": "reply",
+    "body_sentences_max": 1,
+    "body_words_max": 20,
+    "body_must_be_a_question": true,
+    "signoff": "bare_first_name",
+    "subject_case": "lower",
+    "subject_forbids": [
+      "emoji",
+      "title_case",
+      "exclamation"
+    ]
+  },
+  "the_core_rule": {
+    "name": "do_not_answer_your_own_question",
+    "statement": "The body asks one question and stops. It must not contain a second sentence that pitches, lists, offers, or explains.",
+    "why": "Named in the corpus as the single most common mistake in win-back email. Adding the second sentence solves the mystery and removes the reason to reply."
+  }
+}

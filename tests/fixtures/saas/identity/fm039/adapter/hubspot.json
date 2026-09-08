@@ -1,0 +1,21 @@
+{
+  "schema": "hubspot-snapshot.v1",
+  "source": "hubspot",
+  "contacts": [
+    {
+      "id": "hs_adapter_001",
+      "display_name": "Adapter Contact",
+      "last_activity_at": "2026-07-29T18:00:00Z",
+      "email": "",
+      "phone": ""
+    }
+  ],
+  "deals": [
+    {
+      "id": "hs_adapter_deal_001",
+      "display_name": "Adapter Deal",
+      "closed_at": "2026-07-01T00:00:00Z"
+    }
+  ],
+  "associations": {}
+}

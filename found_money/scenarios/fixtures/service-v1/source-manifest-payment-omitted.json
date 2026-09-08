@@ -1,0 +1,24 @@
+{
+  "schema_version": "found-money-source-manifest.v1",
+  "sources": [
+    {
+      "schema_version": "hubspot-crm.2026-03.v1",
+      "source_id": "hubspot",
+      "source_type": "hubspot"
+    },
+    {
+      "format": "csv",
+      "path": "inputs/appointments.csv",
+      "schema_version": "appointments.v1",
+      "source_id": "appointments",
+      "source_type": "appointments"
+    },
+    {
+      "format": "csv",
+      "path": "inputs/proposals.csv",
+      "schema_version": "proposals.v1",
+      "source_id": "proposals",
+      "source_type": "proposals"
+    }
+  ]
+}

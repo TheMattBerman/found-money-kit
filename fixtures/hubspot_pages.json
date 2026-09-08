@@ -1,0 +1,12 @@
+{
+  "contacts": [
+    {"id": "c1", "properties": {"email": "alpha@example.invalid", "lifecyclestage": "opportunity", "trial_end_date": "2026-06-01T00:00:00Z", "notes_last_updated": "2026-05-01T00:00:00Z", "hs_email_optout": "false", "hs_email_bad_address": "false"}},
+    {"id": "c2", "properties": {"email": "bravo@example.invalid", "lifecyclestage": "opportunity", "notes_last_updated": "2026-07-25T00:00:00Z", "hs_email_optout": "true", "hs_email_bad_address": "false"}}
+  ],
+  "deals": [
+    {"id": "d1", "properties": {"dealstage": "qualifiedtobuy", "amount": "400", "hs_v2_date_entered_current_stage": "2026-06-01T00:00:00Z"}},
+    {"id": "d2", "properties": {"dealstage": "qualifiedtobuy", "amount": "", "hs_v2_date_entered_current_stage": "2026-06-01T00:00:00Z"}},
+    {"id": "d3", "properties": {"dealstage": "custom_open_stage", "amount": "", "closedate": "2026-05-01T00:00:00Z"}}
+  ],
+  "associations": {"d1": ["c1"], "d2": ["c2"], "d3": []}
+}
